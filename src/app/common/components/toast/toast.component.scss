@@ -1,0 +1,43 @@
+.toast-box {
+  height: 80px;
+
+  background-color: rgb(50, 50, 50);
+
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+
+  color: white;
+  line-height: 20px;
+  padding: 13px;
+  font-size: 14px;
+}
+
+.toast-message-text {
+  display: block;
+
+  min-width: 150px;
+  max-width: 700px;
+
+  padding: 8px;
+}
+
+.toast-button {
+  display: flex;
+
+  margin: 0 0 0 5px;
+
+  color: rgb(162, 202, 255);
+  font-weight: bold;
+
+  cursor: pointer;
+}
+.toast-close {
+  cursor: pointer;
+
+  color: rgb(155, 155, 155);
+}
+
+.toast-close:hover {
+  color: red;
+}

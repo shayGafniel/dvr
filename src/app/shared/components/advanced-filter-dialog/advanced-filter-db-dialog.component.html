@@ -1,0 +1,310 @@
+<h3 fxLayout="row" fxLayoutAlign="space-between" mat-dialog-title>
+  <span>All Filters</span>
+
+  <button mat-icon-button mat-dialog-close title="Close without saving">
+    <mat-icon>close</mat-icon>
+  </button>
+</h3>
+
+<div class="dialog-content" fxLayout="row wrap" fxLayoutGap="12px" mat-dialog-content>
+  <ng-container *ngFor="let filterItem of advancedFilters[filterPage]">
+    <ng-container [ngSwitch]="filterItem.label">
+      <ng-container *ngSwitchCase="FilterLabels.AmountFrom">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            (input)="setAmountFrom($event.target.value)"
+            [placeholder]="filterItem.label"
+            [value]="$any(filters.amount_from)"
+            matInput
+            type="number"
+          />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.AmountTo">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            (input)="setAmountTo($event.target.value)"
+            [placeholder]="filterItem.label"
+            [value]="$any(filters.amount_to)"
+            matInput
+            type="number"
+          />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.Country">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setCountries($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultCountries[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="countriesOptions$ | async"
+          [selectedItems]="filters.countries || defaultCountries"
+          keyName="code"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.Currency">
+        <app-customize-auto-complete
+          (selectedValue)="setCurrency($event)"
+          [defaultValue]="filters.currency || defaultCurrency[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [listOfOptions]="currencyOptions$ | async"
+          [placeHolderName]="filterItem.label"
+        ></app-customize-auto-complete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.DirectiveInvoices">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setDirectivesInvoices($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultDirectives[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="directivesInvoicesOptions"
+          [selectedItems]="filters.directives_invoices || defaultDirectives"
+          displayName="viewValue"
+          keyName="value"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.DirectiveReclaims">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setDirectivesReclaims($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultDirectives[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="directivesReclaimsOptions"
+          [selectedItems]="filters.directives_reclaims || defaultDirectives"
+          displayName="viewValue"
+          keyName="value"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.EntityName">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setCompanies($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultCompanies[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="companiesOptions$ | async"
+          [selectedItems]="filters.companies || defaultCompanies"
+          keyName="id"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.ExpenseDomain">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setExpenseDomains($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultExpenseDomains[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="expenseDomainOptions"
+          [selectedItems]="filters.expense_domains || defaultExpenseDomains"
+          displayName="viewValue"
+          keyName="value"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.ExpenseType">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setExpenseTypes($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultExpenseTypes[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="expenseTypesOptions$ | async"
+          [selectedItems]="filters.expense_types || defaultExpenseTypes"
+          displayName="viewValue"
+          keyName="value"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.ExpenseTypeBy">
+        <app-button-toggle
+          (change)="setExpenseTypeBy($event)"
+          [disabled]="disabledExpenseTypeBy"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="expenseTypeByOptions"
+          [label]="filterItem.label"
+          [value]="filters.expense_type_by"
+        ></app-button-toggle>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.From">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            (dateChange)="setDateFrom($event.value)"
+            [matDatepicker]="castDatepicker(from)"
+            [max]="castMoment(dateTo || now)"
+            [placeholder]="filterItem.label"
+            [value]="filters.invoiced_at_from"
+            matInput
+          />
+          <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+          <mat-datepicker
+            #from
+            (monthSelected)="onMonthSelected($event, castDatepicker(from))"
+            startView="multi-year"
+          ></mat-datepicker>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.InvoiceId">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            [formControl]="invoiceIdFormControl"
+            [placeholder]="filterItem.label"
+            matInput
+            onlyPositiveNumber
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.InvoiceNumber">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            (input)="setInvoiceNumber($event.target.value)"
+            [placeholder]="filterItem.label"
+            [value]="$any(filters.invoice_number ? filters.invoice_number : '')"
+            matInput
+          />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.NewLine">
+        <div [fxFlex]="filterItem.fxFlex || '100%'"></div>
+      </ng-container>
+      <ng-container *ngSwitchCase="FilterLabels.OriginCountry">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setOriginCountries($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultCountries[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="countriesOptions$ | async"
+          [selectedItems]="filters.origin_countries || defaultCountries"
+          keyName="code"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.PaidBy">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <mat-label>{{ filterItem.label }}</mat-label>
+          <mat-select
+            (selectionChange)="setPaidBy($event.value)"
+            [value]="filters.paid_by || defaultPaidBy"
+          >
+            <mat-option [value]="defaultPaidBy">All</mat-option>
+            <mat-option [value]="PaidBy.Others">{{ PaidBy.Others }}</mat-option>
+            <mat-option [value]="PaidBy.PCard">{{ PaidBy.PCard }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.ReclaimId">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            [formControl]="reclaimIdFormControl"
+            [placeholder]="filterItem.label"
+            matInput
+            onlyPositiveNumber
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.RejectedReason">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setRejectedReasons($event)"
+          [componentLabel]="filterItem.label"
+          [defaultSelectAllItem]="defaultRejectedReasons[0]"
+          [fxFlex]="filterItem.fxFlex"
+          [items]="rejectedReasonsOptions$ | async"
+          [selectedItems]="filters.reject_reasons || defaultRejectedReasons"
+          displayName="viewValue"
+          keyName="value"
+        ></app-multiselect-autocomplete>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.ReportNumber">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            (input)="setReportNumber($event.target.value)"
+            [placeholder]="filterItem.label"
+            [value]="$any(filters.report_number ? filters.report_number : '')"
+            matInput
+          />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.SubmissionAuthority">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <mat-label>{{ filterItem.label }}</mat-label>
+          <mat-select
+            (selectionChange)="setSubmissionAuthority($event.value)"
+            [ngModel]="filters.submission_authority"
+            multiple
+          >
+            <mat-option *ngFor="let option of submissionAuthorityOptions" [value]="option.value">
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.TimeFrame">
+        <time-frame
+          (selectionChange)="setTimeFrame($event)"
+          [fxFlex]="filterItem.fxFlex"
+          [value]="filters.time_frame"
+        ></time-frame>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="FilterLabels.To">
+        <mat-form-field [fxFlex]="filterItem.fxFlex">
+          <input
+            (dateChange)="setDateTo($event.value)"
+            [matDatepicker]="castDatepicker(to)"
+            [max]="castMoment(now)"
+            [min]="castMoment(dateFrom)"
+            [placeholder]="filterItem.label"
+            [value]="filters.invoiced_at_to"
+            matInput
+          />
+          <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+          <mat-datepicker
+            #to
+            (monthSelected)="onMonthSelected($event, castDatepicker(to))"
+            startView="multi-year"
+          ></mat-datepicker>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <div class="color-warn" fxFlex="100%">Unknown filter {{ filterItem.label }}</div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<mat-dialog-actions fxLayout="row nowrap" fxLayoutAlign="end" fxLayoutGap="14px">
+  <button
+    (click)="clear()"
+    [disabled]="isPristineFilters$ | async"
+    color="primary"
+    fxFlex="102px"
+    mat-stroked-button
+  >
+    Clear
+  </button>
+  <button
+    (click)="filter()"
+    [disabled]="!(isDirty$ | async)"
+    color="primary"
+    fxFlex="102px"
+    mat-raised-button
+  >
+    Filter
+  </button>
+  <!--[mat-dialog-close]="true"-->
+</mat-dialog-actions>

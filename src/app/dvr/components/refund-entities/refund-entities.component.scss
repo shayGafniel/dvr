@@ -1,0 +1,47 @@
+@import "../../../../styles/helpers";
+@import "../../../../styles/variables";
+
+.refund-entities {
+  background: #fff;
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+.refund-entity {
+  border-bottom: 1px solid $table-border-color;
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  min-height: emFrom(37);
+  padding: emFrom(4) emFrom(10) emFrom(3) emFrom(19);
+  position: relative;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover,
+  &.active {
+    @extend .bg-active;
+
+    .refund-entity__name {
+      @extend .color-light-text;
+    }
+  }
+  &.active {
+    cursor: auto;
+  }
+
+  &__is-updated {
+    font-size: 1.5em;
+    margin-left: 0.5em;
+
+    &.active {
+      color: #fff;
+    }
+  }
+  &:hover &__is-updated {
+    color: #fff;
+  }
+}

@@ -1,0 +1,41 @@
+@import "../helpers";
+
+mat-button-toggle-group {
+  @extend .field-border;
+  box-sizing: border-box;
+  height: 30px;
+
+  &.mat-button-toggle-group {
+    box-shadow: none;
+  }
+
+  .mat-button-toggle-button {
+    @extend .component-font;
+    background-color: $readonly;
+    min-width: 75px;
+  }
+
+  .mat-button-toggle-label-content {
+    line-height: 2;
+  }
+
+  mat-button-toggle.mat-button-toggle-checked.mat-button-toggle:not(.mat-button-toggle-disabled) {
+    @extend .color-active;
+
+    .mat-button-toggle-button {
+      background-color: #fff;
+    }
+  }
+
+  mat-button-toggle.mat-button-toggle-disabled {
+    outline: none;
+  }
+}
+
+.button-toggle-label {
+  @extend .color-title;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin: -4px 0 4px 0;
+}

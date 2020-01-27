@@ -1,0 +1,14 @@
+<!--second dialog - asks user to describe the problem -->
+<h3>Describe your problem</h3>
+<textarea cols="35" rows="10" [(ngModel)]="description"></textarea>
+<mat-dialog-actions>
+  <button mat-button (click)="dialog.close(false)" type="button" >
+    <span>Cancel</span>
+  </button>
+  <!--non empty description is required for validation-->
+  <button mat-button (click)="dialog.close(description)"
+          [disabled]="!description"
+          color="primary" type="button">
+    <span>Next</span>
+  </button>
+</mat-dialog-actions>

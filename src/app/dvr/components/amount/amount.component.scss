@@ -1,0 +1,12 @@
+.amount {
+  ::ng-deep .mat-select-value-text {
+    display: block;
+  }
+
+  ::ng-deep &__select,
+  ::ng-deep &__mod-value {
+    span:first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

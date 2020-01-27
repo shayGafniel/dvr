@@ -1,0 +1,90 @@
+<form [formGroup]="tableFormGroup">
+  <table class="table">
+    <!-- Headers -->
+    <tr class="table-header">
+      <th *ngFor="let header of getHeaderNamesFromConf()">{{ header }}</th>
+      <th></th> <!-- The last row reserved for: deleting/adding/editing icons -->
+    </tr>
+
+    <!-- Rows with data -->
+    <tr *ngFor="let formGroupOfRow of getListOfFormGroupInFormArray()">
+      <td *ngFor="let columnName of getHeaderNamesFromConf()">
+        <!-- this block (getHeaderNamesFromConf) used to keep the columnName order according to header order -->
+        <ng-container *ngIf="!isEditableColumn(columnName) ; else editing">
+          {{ formGroupOfRow.get(getControlNameByHeaderName(columnName)).value }}
+        </ng-container>
+        <ng-template #editing>
+          <common-customize-table-cell
+            [isWrapWithCard]="true"
+            [column]="getColumnByColumnName(columnName)"
+            [headerName]="columnName"
+            [cellValue]="formGroupOfRow.get(getControlNameByHeaderName(columnName)).value"
+            [formGroup]="formGroupOfRow"
+            (valueChange)="cellValueChange($event)">
+          </common-customize-table-cell>
+        </ng-template>
+
+      </td>
+      <td class="operations-column">
+        <mat-icon class="clickable-icon"
+                  (click)="deletingRow(formGroupOfRow.value)"
+                  matTooltipPosition="above"
+                  matTooltip="Delete entry">delete
+        </mat-icon>
+      </td>
+    </tr>
+
+    <!-- Entry Input Row -->
+    <tr *ngIf="isNewEntryRow()">
+      <td *ngFor="let columnName of getHeaderNamesFromConf()" (click)="isEditablePanelOpen = true"
+          class="editabletable-column">
+        <div>
+          <label class="editabletable-label"
+                 *ngIf="!isEditablePanelOpen">
+            {{ getEditableColumnTitle(columnName) }}
+          </label>
+          <common-customize-table-cell
+            *ngIf="isEditablePanelOpen"
+            [isWrapWithCard]="false"
+            [column]="getColumnByColumnName(columnName)"
+            [headerName]="columnName"
+            [formGroup]="getNewEntryFormGroup()">
+          </common-customize-table-cell>
+        </div>
+      </td>
+      <td class="operations-column">
+        <mat-icon class="clickable-icon"
+                  (click)="clearRow()"
+                  [ngClass]="{'disable' : !getNewEntryFormGroup().dirty}"
+                  matTooltipPosition="above"
+                  matTooltip="Clear Row">cancel
+        </mat-icon>
+        <mat-icon class="clickable-icon"
+                  (click)="addingNewRow(getNewEntryFormGroup().value) ; clearRow()"
+                  [ngClass]="{'disable' : !getNewEntryFormGroup().valid}"
+                  matTooltipPosition="above"
+                  matTooltip="Adding new entry">save
+        </mat-icon>
+      </td>
+    </tr>
+
+    <!-- Auto complete row -->
+    <tr *ngIf="getAutoCompleteConf()">
+      <td colspan="100">
+        <mat-form-field>
+          <input matInput
+                 #inputAutoComplete
+                 [placeholder]="getAutoCompleteConf().placeholder"
+                 [matAutocomplete]="editableAutoComp"
+                 [disabled]="getAutoCompleteRows().length < 1">
+          <mat-autocomplete #editableAutoComp="matAutocomplete"
+                            (optionSelected)="inputAutoComplete.value = ''; addingNewRow($event.option.value)">
+            <mat-option *ngFor="let entry of searchAutoCompleteRows()" [value]="entry">
+              <span>{{ entry[getAutoCompleteConf().keyNameToSearch] }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</form>

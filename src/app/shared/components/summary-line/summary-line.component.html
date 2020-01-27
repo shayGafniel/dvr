@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutGap="15px">
+  <app-summary-line-block
+    *ngFor="let name of summaryOrder "
+    (summaryLineBlockClick)="onSummaryLineBlockClick($event)"
+    (click)="onClickSummary(name)"
+    [amount]="summaryCounts[name]?.amount"
+    [count]="summaryCounts[name]?.count"
+    [icon]="summaryStatic[name]?.icon"
+    [iconClass]="summaryStatic[name]?.iconClass"
+    [label]="summaryStatic[name]?.label"
+    [scope]="summaryStatic[name]?.scope"
+    [clickedSummary] = "currSummary"
+    [style.width]="getWidth()"
+    [filterDate]="filterDate"
+    [currencySymbol]="currencySymbol"
+    [currencyConvertedByServer]="currencyConvertedByServer"
+    [isAmountsPending]="isAmountsPending"
+  ></app-summary-line-block>
+</div>

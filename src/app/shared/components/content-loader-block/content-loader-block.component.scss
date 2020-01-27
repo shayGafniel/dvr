@@ -1,0 +1,17 @@
+@import "../../../../styles/variables";
+
+.content-loader {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__label {
+    background-color: $skeleton-title;
+    border-radius: 4px;
+  }
+
+  &__body {
+    background-color: $skeleton-title;
+    border-radius: 5px;
+  }
+}

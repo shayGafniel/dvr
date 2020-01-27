@@ -1,0 +1,30 @@
+<div class="tool-tip-root" *ngIf="isShown" fxLayout="row" [ngClass]="{'is-relative': isRelative}">
+
+  <!-- The orange triangle Icon with exclamation mark - open / close the box on user click -->
+  <mat-icon class="warn-icon" (click)="openCloseClicked()">report_problem</mat-icon>
+
+  <div *ngIf="isShowButtonOn">
+
+    <!-- The box rectangle frame -->
+    <div class="tool-tip-frame">
+
+      <!-- The left border triangle tip -->
+      <div class="frame-triangle">
+        <div class="triangle-border"></div>
+        <div class="triangle"></div>
+      </div>
+
+      <mat-icon (click)="openCloseClicked()" class="close-button">close</mat-icon>
+
+      <div fxLayout="column" fxLayoutAlign="space-around start" class="text-wrapper">
+        <!-- The QA messages from server -->
+        <ul class="hints-lines">
+          <li *ngFor="let hint of hintsList" class="hints-line">{{hint}}</li>
+        </ul>
+
+        <!-- Hardcoded comment for user (Are you sure ...?) -->
+        <div *ngIf="question" class="question-line">{{question}}</div>
+      </div>
+    </div>
+  </div>
+</div>

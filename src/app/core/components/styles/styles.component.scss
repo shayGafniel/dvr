@@ -1,0 +1,25 @@
+.styles {
+  background-color: #fbfcff;
+  padding: 30px 54px;
+
+  &__header {
+    padding-bottom: 15px;
+  }
+
+  &__header-logo {
+    height: 24px;
+    vertical-align: -1px;
+  }
+
+  &__group {
+    margin-bottom: 21px;
+    padding-top: 1em;
+  }
+
+  &__components > * {
+    margin-bottom: 16px;
+  }
+  .date-picker {
+    width: 20%;
+  }
+}

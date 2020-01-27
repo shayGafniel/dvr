@@ -1,0 +1,183 @@
+<div class="dvr layout-space">
+<!--  <app-breadcrumbs></app-breadcrumbs>-->
+  <h2 class="page-title">Tax Tailor</h2>
+
+  <div class="dvr__filter" fxLayout="row wrap" fxLayoutGap="12px">
+    <div class="dvr__refund-filter dvr__skeleton-input">
+      <app-country-filter
+        *ngIf="entityName$ | async; else noCountryFilter"
+        (countryFilterChange)="onCountryFilterChange($event)"
+        [countryFilter]="countryFilter$ | async"
+        [countryOptions]="countryOptions$ | async"
+        [formState]="refundFilterForm$ | async"
+      ></app-country-filter>
+      <ng-template #noCountryFilter>
+        <app-content-loader-input></app-content-loader-input>
+      </ng-template>
+    </div>
+
+    <div class="dvr__date-range dvr__skeleton-input dvr__skeleton-input_double">
+      <app-date-range
+        *ngIf="entityName$ | async; else noDateRange"
+        [accountId]="activeAccountId$ | async"
+        [entityId]="activeEntityId$ | async"
+        [formState]="dateRangeForm$ | async"
+      ></app-date-range>
+      <ng-template #noDateRange>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="12px">
+          <app-content-loader-input fxFlex="50"></app-content-loader-input>
+          <app-content-loader-input fxFlex="50"></app-content-loader-input>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="dvr__amount dvr__skeleton-input dvr__skeleton-input_short-double">
+      <app-amount
+        *ngIf="entityName$ | async; else noAmount"
+        [formState]="amountForm$ | async"
+      ></app-amount>
+      <ng-template #noAmount>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="12px">
+          <app-content-loader-input fxFlex="50"></app-content-loader-input>
+          <app-content-loader-input fxFlex="50"></app-content-loader-input>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="clear-filter">
+      <button
+        (click)="onFilterReset()"
+        *ngIf="entityName$ | async; else noClearFilter"
+        mat-icon-button
+      >
+        <mat-icon svgIcon="app:clear_filter"></mat-icon>
+      </button>
+      <ng-template #noClearFilter>
+        <app-content-loader-block
+          heightBody="30px"
+          heightTitle="0"
+          spaceBetween="16px"
+        ></app-content-loader-block>
+      </ng-template>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="2%">
+    <div fxFlex="25%">
+      <div *ngIf="accountName$ | async; else noRefundEntities" class="dvr__sticky">
+        <h3 class="dvr__title">Entity Name</h3>
+        <app-refund-entities
+          *ngIf="refundEntities$ | async; else noEntitiesToShow"
+          (entityIdSelect)="onEntityIdSelect($event)"
+          [activeEntityId]="activeEntityId$ | async"
+          [refundEntities]="refundEntities$ | async"
+        ></app-refund-entities>
+        <ng-template #noEntitiesToShow>
+          <h4>No entities for the account</h4>
+        </ng-template>
+      </div>
+      <ng-template #noRefundEntities>
+        <app-content-loader-block
+          class="dvr__skeleton-refund-entities"
+          heightTitle="14px"
+          spaceBetween="13px"
+          spaceTop="3px"
+          widthTitle="100px"
+        ></app-content-loader-block>
+      </ng-template>
+    </div>
+
+    <div fxFlex="46%">
+      <div class="dvr__sticky">
+        <div *ngIf="countryCode$ | async; else noRefundsList">
+          <h3 class="dvr__title">Disqualified Reasons</h3>
+          <app-refunds-list
+            (selectedFlatNodesChanges)="onSelectedFlatNodesChanges($event)"
+            [accountId]="activeAccountId$ | async"
+            [commentFormState]="commentForm$ | async"
+            [entityId]="activeEntityId$ | async"
+            [refundNodes]="refundNodes$ | async"
+            [selectedFlatNodes]="selectedFlatNodes$ | async"
+            [countryCode]="countryCode$ | async"
+            class="dvr__refunds-list"
+          ></app-refunds-list>
+        </div>
+        <ng-template #noRefundsList>
+          <div class="no-refunds-list">
+            <app-content-loader-block
+              class="dvr__skeleton-refunds-list"
+              heightTitle="14px"
+              spaceBetween="13px"
+              spaceTop="3px"
+              widthTitle="100px"
+            ></app-content-loader-block>
+
+            <div class="no-refunds-list__content" fxLayout="row wrap" fxLayoutAlign="center center">
+              <h2 class="no-refunds-list__title" fxFlex="100">No Tax Tailor Yet</h2>
+              <h3 class="no-refunds-list__title" fxFlex="100">Select Entity Name and Country to Start</h3>
+              <div class="no-refunds-list__no-content no-content">
+                <div class="no-content__item no-content__item_dashed">
+                  <div class="no-content__filled-inner"></div>
+                </div>
+                <div class="no-content__item no-content__item_dashed">
+                  <div class="no-content__filled-inner"></div>
+                </div>
+                <div class="no-content__item no-content__item_dashed">
+                  <mat-icon class="no-content__icon">add</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="dvr__action-button">
+          <button
+            *ngIf="entityName$ | async; else noNext"
+            [disabled]="!(isUpdatedEntity$ | async)"
+            color="primary"
+            mat-raised-button
+            routerLink="./summaries"
+          >Next</button>
+          <ng-template #noNext>
+            <app-content-loader-block
+              class="dvr__skeleton-next"
+              heightBody="30px"
+              heightTitle="0"
+              widthBody="65px"
+            ></app-content-loader-block>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="25%">
+      <div class="dvr__sticky">
+        <div *ngIf="potentialForAccount$ | async">
+          <h3 class="dvr__title">VAT Potential Refund</h3>
+          <app-potential
+            [accountName]="accountName$ | async"
+            [entityName]="entityName$ | async"
+            [potentialForAccount]="potentialForAccount$ | async"
+            [potentialForEntity]="potentialForEntity$ | async"
+          ></app-potential>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between">
+          <app-content-loader-block
+            *ngIf="!(potentialForAccount$ | async)"
+            class="dvr__skeleton-account-potential"
+            heightBody="237px"
+            heightTitle="14px"
+            spaceBetween="13px"
+            spaceTop="3px"
+            widthTitle="100px"
+          ></app-content-loader-block>
+          <app-content-loader-block
+            *ngIf="!(potentialForEntity$ | async)"
+            heightBody="343px"
+            heightTitle="0"
+          ></app-content-loader-block>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

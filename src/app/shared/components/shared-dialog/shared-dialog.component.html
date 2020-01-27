@@ -1,0 +1,19 @@
+<h3 fxLayout="row" fxLayoutAlign="space-between" mat-dialog-title>
+  <span> {{ title }}</span>
+
+  <button mat-icon-button mat-dialog-close title="Close without saving">
+    <mat-icon>close</mat-icon>
+  </button>
+</h3>
+
+<div class="dialog-content" fxLayout="row wrap" fxLayoutGap="12px" mat-dialog-content>
+  <mat-dialog-content
+    class="dialog-message"
+    *ngIf="message"
+    [innerHTML]="message"
+  ></mat-dialog-content>
+</div>
+
+<mat-dialog-actions fxLayout="row nowrap" fxLayoutAlign="end" fxLayoutGap="14px">
+  <button (click)="closeDialog()" color="primary" fxFlex="60px" mat-stroked-button>OK</button>
+</mat-dialog-actions>

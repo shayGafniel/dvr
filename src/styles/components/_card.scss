@@ -1,0 +1,46 @@
+@import "../helpers";
+@import "../variables";
+
+mat-card.mat-card {
+  &:not([class*="mat-elevation-z"]) {
+    box-shadow: 0 1px 2px 0 rgba(37, 78, 210, 0.08);
+  }
+
+  .mat-card-header {
+    .mat-card-header-text {
+      margin: 0;
+    }
+    .mat-card-avatar {
+      width: 0;
+    }
+    .mat-card-title {
+      @extend .color-title;
+      align-items: center;
+      display: flex;
+      font-size: 18px;
+      font-weight: normal;
+      justify-content: space-between;
+      letter-spacing: normal;
+      text-align: left;
+
+      .mat-icon {
+        justify-content: flex-end;
+        min-width: 1em;
+      }
+    }
+
+    .mat-card-header-text {
+      width: 100%;
+    }
+  }
+
+  .mat-card-subtitle {
+    font-weight: bold;
+  }
+}
+
+mat-card {
+  mat-icon {
+    @extend .color-labels-and-icons;
+  }
+}

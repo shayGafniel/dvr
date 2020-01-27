@@ -1,0 +1,18 @@
+.amount-column {
+  box-sizing: border-box;
+  justify-content: flex-end;
+  min-width: 166px;
+  padding-right: 18px;
+
+  @media screen and (min-width: 1920px) {
+    padding-right: 3%;
+  }
+}
+
+.name-column {
+  min-width: 200px;
+}
+
+.no-cases {
+  padding-top: 12px;
+}

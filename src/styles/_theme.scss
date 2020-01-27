@@ -1,0 +1,53 @@
+@import "~@angular/material/theming";
+
+@import "./variables";
+
+@include mat-core();
+
+/* prettier-ignore */
+$light-theme-foreground: (
+  base:              $text,
+  divider:           $divider,
+  dividers:          $disabled,
+  disabled:          $disabled-darken,
+  disabled-button:   $disabled-darken,
+  disabled-text:     $disabled-darken,
+  elevation:         $text,
+  hint-text:         $disabled,
+  secondary-text:    $disabled-darken,
+  icon:              rgba($text, 0.54),
+  icons:             rgba($text, 0.54),
+  text:              $text,
+  slider-min:        $text,
+  slider-off:        rgba($text, 0.26),
+  slider-off-active: rgba($text, 0.38),
+);
+
+@function light-theme($primary, $accent, $warn: mat-palette($mat-red)) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: false,
+    foreground: $light-theme-foreground,
+    background: $mat-light-theme-background
+  );
+}
+
+.darker-theme {
+  @include angular-material-theme(light-theme($primary, $darker-accent, $warn));
+}
+
+.main-theme {
+  @include angular-material-theme(light-theme($primary, $accent, $warn));
+}
+
+/* prettier-ignore */
+$custom-typography: mat-typography-config(
+  $font-family: 'Open Sans, sans-serif',
+  $headline: mat-typography-level(36px, 1, 600),
+  $title: mat-typography-level(28px, 1),
+  $subheading-2: mat-typography-level(18px, 1)
+);
+
+@include angular-material-typography($custom-typography);

@@ -1,0 +1,67 @@
+<div class="summary layout-space">
+  <app-breadcrumbs></app-breadcrumbs>
+  <h2 class="page-title">Summaries</h2>
+
+  <div class="summary__filter" fxLayout="row wrap" fxLayoutGap="12px">
+    <div *ngIf="entityName$ | async" class="summary__date-range">
+      <app-date-range
+        [accountId]="activeAccountId$ | async"
+        [entityId]="activeEntityId$ | async"
+        [formState]="dateRangeForm$ | async"
+      ></app-date-range>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="2%">
+    <div fxFlex="25%">
+      <div class="summary__sticky">
+        <h3 class="summary__title">Entity Name</h3>
+        <app-refund-entities
+          (entityIdSelect)="onEntityIdSelect($event)"
+          [activeEntityId]="activeEntityId$ | async"
+          [refundEntities]="refundEntities$ | async"
+        ></app-refund-entities>
+      </div>
+    </div>
+
+    <div fxFlex="46%">
+      <div class="summary__sticky">
+        <h3 class="summary__title">Disqualified Reasons</h3>
+        <app-refunds-approve-list
+          [accountId]="activeAccountId$ | async"
+          [commentFormState]="commentForm$ | async"
+          [countryOptions]="countryOptions$ | async"
+          [entityId]="activeEntityId$ | async"
+          [groupedRefundNodes]="groupedRefundNodes$ | async"
+        ></app-refunds-approve-list>
+
+        <div
+          *ngIf="(groupedRefundNodes$ | async | keyvalue)?.length"
+          class="summary__action-button"
+          fxLayout="row"
+          fxLayoutGap="20px"
+        >
+          <button
+            (click)="createDraft()"
+            [disabled]="isDraftCreating"
+            color="primary"
+            mat-raised-button
+          >Save draft</button>
+          <a color="primary" mat-button routerLink="../">Back</a>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="25%">
+      <div class="summary__sticky">
+        <h3 class="summary__title">VAT Potential Refund</h3>
+        <app-potential
+          [accountName]="accountName$ | async"
+          [entityName]="entityName$ | async"
+          [potentialForAccount]="potentialForAccount$ | async"
+          [potentialForEntity]="potentialForEntity$ | async"
+        ></app-potential>
+      </div>
+    </div>
+  </div>
+</div>

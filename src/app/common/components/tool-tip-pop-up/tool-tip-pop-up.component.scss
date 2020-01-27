@@ -1,0 +1,86 @@
+$too-tip-orange: rgb(236, 126, 2);
+
+.tool-tip-root {
+  position: absolute;
+  z-index: 3;
+  &.is-relative {
+    position: relative;
+  }
+}
+
+.tool-tip-frame {
+  padding: 10px 20px;
+  width: 200px;
+  background-color: rgba(256, 256, 256, 0.9);
+  border: $too-tip-orange 1px solid;
+  height: 55px;
+  overflow-y: auto;
+}
+
+.frame-triangle {
+  position: absolute;
+  left: -17px;
+
+  .triangle {
+    border: solid;
+    border-color: transparent white transparent transparent;
+    border-width: 8px;
+    position: relative;
+    top: -17px;
+  }
+
+  .triangle-border {
+    border: solid;
+    border-color: transparent $too-tip-orange transparent transparent;
+    border-width: 9px;
+  }
+}
+
+.close-button {
+  color: $too-tip-orange;
+}
+
+.close-button {
+  font-size: 14px;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+}
+
+.question-line,
+.hints-lines {
+  color: black;
+}
+
+.hints-line,
+.question-line {
+  font-size: 16px;
+}
+
+.hints-line:not(:first-child) {
+  margin-top: 7px;
+}
+
+.warn-icon {
+  position: absolute;
+  background-color: transparent;
+  color: $too-tip-orange;
+  left: -33px;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+}
+
+.hints-lines {
+  padding: 0;
+  margin: 0 0 5px 0;
+}
+
+.text-wrapper {
+  min-height: 100%;
+}

@@ -1,0 +1,81 @@
+<mat-table
+  *ngIf="cases.length; else noCases"
+  [dataSource]="cases"
+  class="portal-table portal-table_breakable"
+>
+  <!-- Id -->
+  <ng-container matColumnDef="caseId" sticky>
+    <mat-header-cell *matHeaderCellDef fxFlex="88px" fxFlex.gt-lg="7%"> Case ID </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="88px" fxFlex.gt-lg="7%">{{ element.caseId }}</mat-cell>
+  </ng-container>
+
+  <!-- EntityName -->
+  <ng-container matColumnDef="entityName">
+    <mat-header-cell *matHeaderCellDef class="name-column"> Company </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="name-column">{{ element.entityName }}</mat-cell>
+  </ng-container>
+
+  <!-- CreatedAt -->
+  <ng-container matColumnDef="createdAt">
+    <mat-header-cell *matHeaderCellDef fxFlex="108px" fxFlex.gt-lg="10%">
+      Creation Date
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="108px" fxFlex.gt-lg="10%">
+      {{ element.createdAt | date }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- PotentialAmount -->
+  <ng-container matColumnDef="potentialAmount">
+    <mat-header-cell *matHeaderCellDef class="amount-column" fxFlex="169px" fxFlex.gt-lg="13%">
+      Potential VAT Amount
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="amount-column currency" fxFlex="169px" fxFlex.gt-lg="13%">
+      {{ element.potentialVatAmount | currency:currencySymbol:'symbol':'1.0-0' }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Countries Column -->
+  <ng-container matColumnDef="countries">
+    <mat-header-cell *matHeaderCellDef fxFlex="80px" fxFlex.gt-lg="10%"> Countries </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="80px" fxFlex.gt-lg="10%">
+      {{ element.countries[0] }}
+      <span *ngIf="element.countries.length > 1">&nbsp;+{{ element.countries.length - 1 }}</span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- CreatedBy -->
+  <ng-container matColumnDef="createdBy">
+    <mat-header-cell *matHeaderCellDef fxFlex="130px" fxFlex.gt-lg="10%"> Created By </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="130px" fxFlex.gt-lg="10%">
+      {{ element.createdBy }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- ApprovedBy -->
+  <ng-container matColumnDef="approvedBy">
+    <mat-header-cell *matHeaderCellDef fxFlex="130px" fxFlex.gt-lg="10%">
+      Approved By </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="130px" fxFlex.gt-lg="10%">
+      {{ element.approvedBy }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Status -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef fxFlex="135px" fxFlex.gt-lg="10%"> Status </mat-header-cell>
+    <mat-cell *matCellDef="let element" fxFlex="135px" fxFlex.gt-lg="10%">
+      <span class="circle" background-color [setColor]="detectColor(element.status)"></span>
+      {{ mapStatus(element.status) }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"
+           (click)=redirectToCase(row.hash)>
+  </mat-row>
+</mat-table>
+
+<ng-template #noCases>
+  <h2 class="no-invoices no-cases">No Cases Found</h2>
+</ng-template>

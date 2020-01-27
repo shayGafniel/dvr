@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+
+$blue-primary: mat-palette($mat-light-blue, 500);
+$blue-accent: mat-palette($mat-light-blue, 500);
+$warn: mat-palette($mat-red);
+
+// editable
+$grayOutColorText: #b0b0b0;
+$sectionHeaderTextColor: #298ab1;
+$tabOnHoverBGColor: rgba(81, 91, 103, 0.3);
+
+// colors
+$lavender: #ebf7fc;
+$summer-sky-blue: #33abe0;

@@ -1,0 +1,32 @@
+<form
+  [ngrxFormState]="formState"
+  class="amount"
+  fxLayout="row nowrap"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="12px"
+  novalidate
+>
+  <mat-form-field fxFlex="calc(50% - 6px)">
+    <mat-select
+      [ngrxFormControlState]="formState.controls.mod"
+      class="amount__select"
+      placeholder="Condition"
+    >
+      <mat-option [value]="AmountMod.Less" class="amount__mod-value">
+        {{ AmountMod.Less }} than
+      </mat-option>
+      <mat-option [value]="AmountMod.Greater" class="amount__mod-value">
+        {{ AmountMod.Greater }} than
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="calc(50% - 6px)">
+    <input
+      [ngrxFormControlState]="formState.controls.amount"
+      matInput
+      placeholder="Invoice amount"
+      type="number"
+    >
+  </mat-form-field>
+</form>

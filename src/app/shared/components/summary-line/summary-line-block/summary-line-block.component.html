@@ -1,0 +1,14 @@
+<div class="summary-line-block shadowed-block" [class.active]="activeItem" fxLayout="column" (click)="clickEvent()">
+  <div fxLayout="row" fxLayoutAlign="space-between" [id]="label">
+    <mat-icon
+      [ngClass]="iconClass"
+      [svgIcon]="'app:' + icon"
+      class="summary-line-block__icon"
+    ></mat-icon>
+    <span class="summary-line-block__count">{{ count | number }}</span>
+  </div>
+  <div class="summary-line-block__second-row" fxLayout="row" fxLayoutAlign="space-between">
+    <span class="summary-line-block__label color-title">{{ label }}</span>
+    <span *ngIf="!isAmountsPending">{{ (currencyConvertedByServer ? amount : amount | currencyConverter | async) | currency:currencySymbol:'symbol':'1.0-0'  }}</span>
+  </div>
+</div>

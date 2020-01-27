@@ -1,0 +1,8 @@
+example:
+
+<bo-responsive-rotatable-image [src]="my-image.png" [size]="500"></bo-responsive-rotatable-image>
+
+inputs:
+
+src: string; required  - image path
+size: number; optional - size in pixels of max(image width, image height), default - parent element width

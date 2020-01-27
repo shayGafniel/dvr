@@ -1,0 +1,18 @@
+@import "../../../../styles/variables";
+
+$top-content-size: 352px;
+
+.cases {
+  ::ng-deep .table {
+    height: auto;
+
+    .mat-table {
+      max-height: calc(100vh - #{$top-content-size} - #{$layout-space});
+      overflow: auto;
+
+      @media screen and (max-height: $top-content-size + 200px) {
+        max-height: $top-content-size;
+      }
+    }
+  }
+}

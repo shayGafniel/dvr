@@ -1,0 +1,15 @@
+<mat-form-field>
+  <input
+    matInput
+    type="text"
+    [formControl]="autocompleteFormControl"
+    [matAutocomplete]="customizeAutoComplete"
+    [placeholder]="placeHolderName"
+  >
+  <mat-autocomplete #customizeAutoComplete="matAutocomplete" [displayWith]="displayGroupName.bind(this)">
+    <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+      <span *ngIf="isCurrency">  {{ option[fieldNameToView] }} ({{ option.code }})</span>
+      <ng-container *ngIf="!isCurrency"> {{ option[fieldNameToView] }} </ng-container>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

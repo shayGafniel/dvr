@@ -1,0 +1,33 @@
+<div class="cases filter-summary-table layout-space">
+  <app-breadcrumbs></app-breadcrumbs>
+  <h2 class="page-title">Cases</h2>
+
+  <app-cases-filter
+    (filterReset)="onFilterReset()"
+    (setEntities)="onSetEntities($event)"
+    (timeFrameSelect)="onTimeFrameSelect($event)"
+    [formState]="casesFilterForm$ | async"
+    [multiselectEntities]="multiselectEntities$ | async"
+    [multiselectSelectedEntities]="multiselectSelectedEntities$ | async"
+    [selectedTimeFrame]="selectedTimeFrame$ | async"
+  ></app-cases-filter>
+
+  <div class="summary-line">
+    <app-summary-line
+      (summaryLineBlockClick)="onFilterStatusChange($event)"
+      [summaryCounts]="casesListCounts$ | async"
+      [summaryOrder]="casesListCountsOrder"
+      [summaryStatic]="casesListCountsStatic"
+    ></app-summary-line>
+  </div>
+
+  <div class="table">
+    <app-cases-list
+      *ngIf="(cases$ | async); else loadingTableData"
+      [cases]="cases$ | async"
+    ></app-cases-list>
+    <ng-template #loadingTableData>
+      <mat-spinner></mat-spinner>
+    </ng-template>
+  </div>
+</div>

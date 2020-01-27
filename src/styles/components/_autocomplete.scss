@@ -1,0 +1,23 @@
+@import "../helpers";
+
+.mat-focused .select-arrow {
+  @extend .color-active;
+}
+.select-arrow {
+  @extend .color-labels-and-icons;
+
+  border: solid;
+  border-width: 0 1.5px 1.5px 0;
+  bottom: 20px;
+  display: inline-block;
+  height: 0;
+  padding: 3px;
+  position: absolute;
+  right: 23px;
+  transform: rotate(45deg);
+  width: 0;
+}
+
+.mat-autocomplete-panel {
+  border-radius: 5px;
+}

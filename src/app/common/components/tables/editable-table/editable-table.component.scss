@@ -1,0 +1,60 @@
+@import "../../../../../styles/variables";
+
+$tableHeight: 50px;
+
+@mixin table-border($borderColor) {
+  border-bottom: 1px solid $borderColor;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  .table-header {
+    @include table-border($sectionHeaderTextColor);
+    color: $sectionHeaderTextColor;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: capitalize;
+    text-align: left;
+  }
+
+  tr {
+    @include table-border($tabOnHoverBGColor);
+    text-align: left;
+    height: $tableHeight;
+    width: 100%;
+  }
+
+  th {
+    &:first-child {
+      padding-left: 25px;
+    }
+  }
+
+  td {
+    position: relative;
+    &:first-child {
+      padding-left: 25px;
+    }
+  }
+
+  .operations-column {
+    padding-right: 25px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    mat-icon {
+      position: relative;
+      top: $tableHeight/5;
+      height: $tableHeight;
+    }
+  }
+
+  .editabletable-label {
+    color: $grayOutColorText;
+  }
+
+  .autocomplete-column {
+    column-span: 10;
+  }
+}

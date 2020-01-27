@@ -1,0 +1,5 @@
+<h2 mat-dialog-title *ngIf="title" [ngClass]="getDialogClass()">{{ title }}</h2>
+<mat-dialog-content *ngIf="message" [innerHTML]="message"></mat-dialog-content>
+<mat-dialog-actions>
+  <ng-content></ng-content>
+</mat-dialog-actions>

@@ -1,0 +1,68 @@
+<!-- This template block will generate a table cell according to the given type (input, date, etc..) -->
+<form [formGroup]="formGroup">
+  <ng-container [ngSwitch]="getTableCellTypeString()">
+
+    <!-- input -->
+    <ng-container *ngSwitchCase="tableCellTypes[tableCellTypes.input]">
+      <ng-container *ngIf="!isWrapWithCard ; else wrapWithCard">
+        <ng-container *ngTemplateOutlet="input"></ng-container>
+        <!-- The Input -->
+      </ng-container>
+      <ng-template #wrapWithCard>
+        <div commonTableCardInput [isInputValid]="getCellFormControl().valid" [valueInput]="cellValue" (valueOutput)="cellValue = $event"
+             (cardClosed)="emitValueChange(cellValue)">
+          <label>{{ cellValue }}</label>
+          <mat-card #card class="input-card">
+            <ng-container *ngTemplateOutlet="input"></ng-container>
+            <!-- The Input -->
+          </mat-card>
+        </div>
+      </ng-template>
+    </ng-container>
+
+    <!-- Date -->
+    <ng-container *ngSwitchCase="tableCellTypes[tableCellTypes.date]">
+      <mat-form-field>
+        <input matInput readonly [formControlName]="getFormControlName()" [value]="cellValue" [matDatepicker]="picker"
+               [placeholder]="getPlaceHolder()"
+               (dateChange)="emitValueChange($event.value)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </ng-container>
+
+    <!-- Checkbox -->
+    <ng-container *ngSwitchCase="tableCellTypes[tableCellTypes.checkbox]">
+      <mat-checkbox [checked]="cellValue" [formControlName]="getFormControlName()"
+                    (change)="emitValueChange($event.checked)">
+      </mat-checkbox>
+    </ng-container>
+
+    <!-- Select -->
+    <ng-container *ngSwitchCase="tableCellTypes[tableCellTypes.select]">
+      <mat-form-field>
+        <mat-select [placeholder]="getPlaceHolder()" [value]="cellValue" [formControlName]="getFormControlName()"
+                    (selectionChange)="emitValueChange($event.value)">
+          <mat-option *ngFor="let optionVal  of column.defaultValue" [value]="optionVal">{{optionVal}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+
+  </ng-container>
+
+  <!-- The input -->
+  <ng-template #input>
+    <mat-form-field class="input">
+      <input matInput [maxlength]="maxInputLength" [placeholder]="getPlaceHolder()" [required]="column.isRequired"
+             [formControlName]="getFormControlName()">
+      <mat-error *ngIf="getCellFormControl().hasError('required')">
+        This field is
+        <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="getCellFormControl().hasError('email') && !getCellFormControl().hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+  </ng-template>
+
+</form>

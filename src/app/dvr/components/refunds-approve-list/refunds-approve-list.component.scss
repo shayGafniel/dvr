@@ -1,0 +1,21 @@
+@import "../../styles/shared";
+@import "../../../../styles/variables";
+
+.refunds-approve-list {
+  &__header {
+    padding-left: 39px;
+  }
+
+  &__country-group:last-child &__node:last-child {
+    border-bottom: 0;
+  }
+
+  &__name {
+    padding: 6px 0 6px 6px;
+    white-space: normal;
+  }
+
+  &__helper {
+    cursor: help;
+  }
+}

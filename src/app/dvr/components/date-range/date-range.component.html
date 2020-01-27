@@ -1,0 +1,40 @@
+<form
+  *ngIf="isExistDateRange"
+  [class.is-disabled]="dateRange.isDisabled"
+  [ngrxFormState]="formState"
+  [title]="dateRange.isDisabled ? disabledTitle : ''"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="12px"
+  novalidate
+>
+  <mat-form-field fxFlex="calc(50% - 6px)">
+    <input
+      [disabled]="dateRange.controls.start.isDisabled"
+      [matDatepicker]="datepicker"
+      [ngrxFormControlState]="dateRange.controls.start"
+      [ngrxValueConverter]="dateValueConverter"
+      matInput
+      placeholder="From"
+    >
+    <mat-datepicker-toggle [for]="datepicker" matSuffix></mat-datepicker-toggle>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="calc(50% - 6px)">
+    <input
+      [disabled]="dateRange.controls.end.isDisabled"
+      [ngrxFormControlState]="dateRange.controls.end"
+      [ngrxValueConverter]="dateValueConverter"
+      [vbDatepicker]="datepicker"
+      matInput
+      placeholder="To"
+    >
+    <mat-datepicker-toggle [for]="datepicker" matSuffix></mat-datepicker-toggle>
+    <vb-datepicker
+      #datepicker
+      (monthSelected)="onMonthSelected($event)"
+      startView="year"
+      touchUi="false"
+    ></vb-datepicker>
+  </mat-form-field>
+</form>

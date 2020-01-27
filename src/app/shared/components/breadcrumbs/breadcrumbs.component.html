@@ -1,0 +1,15 @@
+<div class="breadcrumbs" fxLayout="row" fxLayoutGap="4px">
+  <ng-container *ngFor="let breadcrumb of breadcrumbs; let first = first; let last = last">
+    <div *ngIf="!first">&gt;</div>
+
+    <a
+      *ngIf="breadcrumb.link && !last; else noLink"
+      [routerLink]="breadcrumb.link"
+      [title]="'Go to ' + breadcrumb.title"
+    >{{ breadcrumb.title }}</a>
+
+    <ng-template #noLink>
+      <div>{{ breadcrumb.title }}</div>
+    </ng-template>
+  </ng-container>
+</div>

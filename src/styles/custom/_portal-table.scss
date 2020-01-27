@@ -1,0 +1,25 @@
+@import "../variables";
+
+.portal-table {
+  &_breakable {
+    .mat-cell {
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+
+  $min-height: 36px;
+
+  .mat-row,
+  .mat-header-row {
+    border-bottom-color: $table-border-color;
+    min-height: $min-height + 1px;
+  }
+
+  .mat-cell {
+    box-sizing: border-box;
+    min-height: $min-height;
+    padding-bottom: 3px;
+    padding-top: 3px;
+  }
+}

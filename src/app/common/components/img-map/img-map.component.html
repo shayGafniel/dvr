@@ -1,0 +1,16 @@
+<div
+  class="img-map"
+  #container
+  (window:resize)="onResize($event)">
+  <img
+    #image
+    [src]="src"
+    (loadstart)="onBeforeLoad()"
+    (load)="onLoad($event)">
+  <canvas
+    [hidden]="isHidden"
+    #canvas
+    (click)="onClick($event)"
+    (mousemove)="onMousemove($event)"
+    (mouseout)="onMouseout($event)"></canvas>
+</div>

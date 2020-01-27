@@ -1,0 +1,32 @@
+@import "../../styles/shared";
+
+.refunds-list {
+  &__node {
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__pictures {
+    margin-top: 5px;
+  }
+
+  ::ng-deep .mat-checkbox-inner-container {
+    margin-right: 11px;
+  }
+  &__checkbox {
+    margin-left: 3px;
+    max-width: 100%;
+
+    ::ng-deep label {
+      padding: 5px 0 6px;
+      white-space: normal;
+    }
+
+    ::ng-deep .mat-checkbox-label {
+      line-height: 1.33;
+      position: relative;
+      top: 1px;
+    }
+  }
+}

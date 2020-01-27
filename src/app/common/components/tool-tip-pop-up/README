@@ -1,0 +1,33 @@
+This is a readme file for tool tip component
+
+First applied at expedite component.
+
+Motivation behind this component is to indicate the user when it might fill fields incorrectly.
+
+The Idea is to call Mitch service each time user enters or changes field value and get from it a QA report.
+
+The report should be mapped to the relevant and then passed to the component as input.
+
+For design look at:
+
+https://projects.invisionapp.com/share/JADCPOD2D#/screens
+
+
+API:
+
+@Input() hintsList: Array<string> // the QA messages accepted from Mitch (or any other QA service) as html un-ordered list (orange font).
+@Input() question: string // A comment for the user below the QA messages (black font).
+
+@Input() stylesUpdateTrigger: Observable<any> // the components subscribes for this observable and rendered its content and style on change
+
+example:
+<common-bo-tool-tip-pop-up [hintsList]="['Currency is too old.', 'Currency is too weird.']" [question]="'Are you sure this is the right currency?'"
+                                    [stylesUpdateTrigger]="currenciesMessages"></common-bo-tool-tip-pop-up>
+
+
+
+
+
+
+
+

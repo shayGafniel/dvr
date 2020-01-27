@@ -1,0 +1,11 @@
+<vb-calendar cdkTrapFocus [id]="datepicker.id" [ngClass]="datepicker.panelClass" [startAt]="datepicker.startAt"
+             [startView]="datepicker.startView"
+             [minDate]="datepicker._minDate" [maxDate]="datepicker._maxDate" [dateFilter]="datepicker._dateFilter"
+             [selected]="datepicker._selected"
+             (selectedChange)="datepicker.select($event)" [range]="!!vbDatepicker._datepickerInputRangeEnd"
+             [selectedRangeEnd]="vbDatepicker._selectedRangeEnd"
+             (selectedRangeEndChange)="vbDatepicker.select($event)" (_userSelection)="onUserSelection()"
+             (yearSelected)="onYearSelected($event)"
+             (monthSelected)="onMonthSelected($event)"
+>
+</vb-calendar>

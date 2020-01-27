@@ -1,0 +1,22 @@
+<!-- first dialog validates user email before it asks for support-->
+
+<h2>For support, please enter your mail:</h2>
+<form #mailForm="ngForm">
+  <mat-form-field>
+    <input matInput placeholder="Email" [(ngModel)]="email" name="email" type="email" required>
+  </mat-form-field>
+  <mat-dialog-actions>
+    <button mat-button (click)="dialog.close(false)" type="button" >
+      <span>Cancel</span>
+    </button>
+    <button
+      (click)="dialog.close(true)"
+      [disabled]="!mailForm.form.valid"
+      color="primary"
+      mat-button
+      type="button"
+    >
+      <span>Next</span>
+    </button>
+  </mat-dialog-actions>
+</form>

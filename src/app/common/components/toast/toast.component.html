@@ -1,0 +1,21 @@
+<!--
+  A simple toast component:
+  Contains a short message one functional button invokes custom callback function and an exit button
+
+  Inputs:
+  displayWhen (boolean) - A condition determines  when the toast should popup to view.
+  messageText (string) - The toast main message.
+  buttonText (string) - button's name
+  enableToastReload (boolean) - Whether the toast will be available after closing it with the close button.
+
+  Outputs:
+  closeClicked() (void) sets 'true' on userClickedClose (boolean) and hides the component from view
+  buttonClicked() (void) invokes buttonCallback() and emits event buttonPressed to parent component (look at toast.component.ts)
+
+-->
+
+<div *ngIf="displayWhen && !userClickedClose" class="toast-box" fxLayout="row" fxLayoutAlign="end center">
+  <div class="toast-message-text">{{messageText}}</div>
+  <button mat-button (click)="buttonClicked()" class="toast-button">{{buttonText}}</button>
+  <mat-icon (click)="closeClicked()" class="toast-close">close</mat-icon>
+</div>

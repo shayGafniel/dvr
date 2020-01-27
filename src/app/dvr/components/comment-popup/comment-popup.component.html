@@ -1,0 +1,27 @@
+<mat-menu #commentMenu="matMenu" class="menu-with-textarea">
+  <form *ngIf="refundComment" [ngrxFormState]="formState" novalidate>
+    <textarea
+      (click)="onControlClick($event)"
+      [mat-autosize]="true"
+      [matAutosizeMaxRows]="10"
+      [matAutosizeMinRows]="3"
+      [attr.maxlength]="maxlength"
+      [ngrxFormControlState]="refundComment"
+      autofocus
+      matInput
+      placeholder="Leave a comment"
+    ></textarea>
+  </form>
+</mat-menu>
+
+<button
+  [class.has-comment]="refundComment?.value"
+  [matBadge]="badge"
+  [matBadgeHidden]="!badge"
+  [matMenuTriggerFor]="commentMenu"
+  class="relative-button"
+  mat-icon-button
+  matBadgeSize="small"
+>
+  <mat-icon aria-label="Add comment to the reject reason" svgIcon="app:note"></mat-icon>
+</button>

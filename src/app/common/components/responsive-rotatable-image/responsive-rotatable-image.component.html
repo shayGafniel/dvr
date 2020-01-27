@@ -1,0 +1,41 @@
+<div class="responsive-image-root">
+  <div class="btn-container">
+    <!-- rotate left button -->
+    <mat-icon class="rotate" (click)="rotateLeft()">rotate_left</mat-icon>
+
+    <!-- rotate right button -->
+    <mat-icon class="rotate" (click)="rotateRight()">rotate_right</mat-icon>
+
+    <!-- zoom in button -->
+    <mat-icon class="zoom" (click)="zoomIn()">zoom_in</mat-icon>
+
+    <!-- zoom out button -->
+    <mat-icon class="zoom" (click)="zoomOut()">zoom_out</mat-icon>
+
+    <!-- Restore zoom to 100% -->
+    <mat-icon class="zoom" [ngClass]="{'gray-out-icon': isDisableRestoreZoom() }" (click)="restoreZoomTo100Percent()">
+      zoom_out_map
+    </mat-icon>
+
+    <!--&lt;!&ndash;OCR markers&ndash;&gt;-->
+    <!--<mat-icon *ngIf="isOcr"-->
+              <!--class="marker-icon"-->
+              <!--[ngClass]="{'markers-off': isMarkersHidden}"-->
+              <!--(click)="toggleMarkers()">remove_from_queue-->
+    <!--</mat-icon>-->
+  </div>
+
+  <div class="image-parent" commonMaxFitHeight [trigger]="true">
+    <h2 class="image-placeholder" [fxHide]="src || noPlaceHolder">
+      Image loading...
+    </h2>
+    <common-img-map class="image"
+             [isHidden]="isMarkersHidden"
+             [src]="src"
+             (imageLoaded)="onImageLoaded()"
+             draggable
+             (wheel)="mouseWheelZoom($event)">
+    </common-img-map>
+    <!--<img class="image" [src]="src"  draggable (wheel)="mouseWheelZoom($event)">-->
+  </div>
+</div>

@@ -1,0 +1,19 @@
+@import "../../styles/variables";
+
+mat-dialog-container.mat-dialog-container {
+  background-color: $dialog-bg;
+  border-radius: 5px;
+  box-shadow: 0 6px 32px 0 rgba(37, 78, 210, 0.28);
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(18, 26, 49, 0.17);
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+}
+
+.mat-dialog-actions {
+  min-height: 0;
+}

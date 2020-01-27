@@ -1,0 +1,18 @@
+<ul class="refund-entities shadowed-block">
+  <li
+    *ngFor="let refundEntity of refundEntities"
+    (click)="onRefundEntitySelect(refundEntity)"
+    [class.active]="isActive(refundEntity)"
+    class="refund-entity"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <span class="refund-entity__name" fxFlex>{{ refundEntity.name }}</span>
+    <mat-icon
+      *ngIf="refundEntity.isUpdated"
+      [class.active]="isActive(refundEntity)"
+      class="refund-entity__is-updated color-blue relative-icon"
+      svgIcon="app:edit"
+    ></mat-icon>
+  </li>
+</ul>

@@ -1,0 +1,17 @@
+@import "~normalize.css/normalize.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+@import "./theme";
+@import "../app/common/styles/styles";
+
+.helpers {
+  @import "./helpers";
+}
+
+.global {
+  @import "./components";
+  @import "./custom";
+  @import "./global";
+}
+
+@import "./important";

@@ -1,0 +1,18 @@
+<form [ngrxFormState]="formState" fxLayout="row wrap" fxLayoutAlign="space-between" novalidate>
+  <mat-form-field>
+    <input
+      (input)="onCountryInput($event)"
+      [matAutocomplete]="countryAutocomplete"
+      [ngrxFormControlState]="formState.controls.country"
+      matInput
+      placeholder="Country"
+      type="text"
+    >
+    <mat-autocomplete #countryAutocomplete="matAutocomplete" [displayWith]="displayCountry">
+      <mat-option *ngFor="let option of filteredCountryOptions$ | async" [value]="option">
+        {{ option.display }}
+      </mat-option>
+    </mat-autocomplete>
+    <div class="select-arrow"></div>
+  </mat-form-field>
+</form>

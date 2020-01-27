@@ -1,0 +1,81 @@
+<div class="approve layout-space">
+  <app-breadcrumbs></app-breadcrumbs>
+  <h2 class="page-title">Case</h2>
+
+  <div class="approve__filter" fxLayout="row wrap" fxLayoutGap="12px">
+    <div *ngIf="entityName$ | async" class="approve__date-range">
+      <app-date-range
+        [accountId]="activeAccountId$ | async"
+        [entityId]="activeEntityId$ | async"
+        [formState]="dateRangeForm$ | async"
+      ></app-date-range>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="2%">
+    <div fxFlex="25%">
+      <div class="approve__sticky">
+        <h3 class="approve__title">Entity Name</h3>
+        <app-refund-entities
+          [activeEntityId]="activeEntityId$ | async"
+          [refundEntities]="refundEntities$ | async"
+        ></app-refund-entities>
+      </div>
+    </div>
+
+    <div fxFlex="46%">
+      <div class="approve__sticky">
+        <h3 class="approve__title">Disqualified Reasons</h3>
+        <app-refunds-approve-list
+          [countryOptions]="countryOptions$ | async"
+          [groupedRefundNodes]="groupedRefundsNodes$ | async"
+        ></app-refunds-approve-list>
+
+        <div
+          *ngIf="(groupedRefundsNodes$ | async | keyvalue)?.length"
+          class="approve__action-button"
+          fxLayout="row"
+          fxLayoutAlign="space-between"
+        >
+          <div fxLayout="row">
+            <button
+              *ngIf="(canDoApprove$ | async) !== null"
+              (click)="doApprove()"
+              [disabled]="isApproving || !(canDoApprove$ | async)"
+              color="primary"
+              mat-raised-button
+            >Approve</button>
+            <div
+              *ngIf="!(canDoApprove$ | async) && (status$ | async) as status"
+              class="approve__status color-blue"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+            >
+              <span>
+                <span class="approve__status-value">{{ status }}</span> successfully.
+              </span>
+            </div>
+          </div>
+          <button
+            *ngIf="(canDoApprove$ | async) && (isAdmin$ | async)"
+            (click)="removeCase()"
+            color="warn"
+            mat-raised-button
+          >Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="25%">
+      <div class="approve__sticky">
+        <h3 class="approve__title">VAT Potential Refund</h3>
+        <app-potential
+          [accountName]="accountName$ | async"
+          [entityName]="entityName$ | async"
+          [potentialForAccount]="potentialForAccount$ | async"
+          [potentialForEntity]="potentialForEntity$ | async"
+        ></app-potential>
+      </div>
+    </div>
+  </div>
+</div>

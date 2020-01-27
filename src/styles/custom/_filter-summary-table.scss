@@ -1,0 +1,18 @@
+@import "../variables";
+
+.filter-summary-table {
+  padding-bottom: $layout-space;
+
+  .summary-line {
+    margin-top: 13px;
+    min-width: 797px;
+    width: 100%;
+  }
+  .table {
+    height: 56vh;
+    margin-top: -12px;
+  }
+  mat-spinner {
+    margin: 100px auto;
+  }
+}

@@ -1,0 +1,81 @@
+<h1 mat-dialog-title class="dialog-header">Support</h1>
+<form #supportForm="ngForm">
+  <mat-dialog-content mat-dialog-content class="user-comment-dialog-content">
+    <ng-container *ngIf="!isAfterSend || isLoading; else afterSend">
+      <div>
+        <mat-form-field>
+          <mat-select
+            placeholder="Frequency"
+            [disabled]="isAfterSend"
+            name="frequency"
+            [(ngModel)]="supportUserData.frequency"
+            required>
+            <mat-option value="Always">Always</mat-option>
+            <mat-option value="Often">Often</mat-option>
+            <mat-option value="Rarely">Rarely</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Severity"
+                      [disabled]="isAfterSend"
+                      name="severity"
+                      [(ngModel)]="supportUserData.severity"
+                      required>
+            <mat-option value="Critical">Unable to continue working</mat-option>
+            <mat-option value="High">Allows a limited number of operations</mat-option>
+            <mat-option value="Normal">Does not interrupt to ongoing work</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Affect On"
+                      [disabled]="isAfterSend"
+                      name="affectOn"
+                      [(ngModel)]="supportUserData.affectOn"
+                      required>
+            <mat-option value="Me">Only me</mat-option>
+            <mat-option value="Me and some Others">Me And Some Other Users</mat-option>
+            <mat-option value="All Users">All Users</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <textarea placeholder="comment"
+                [disabled]="isAfterSend"
+                name="textAreaContent"
+                [(ngModel)]="supportUserData.userComment"
+                required>
+      </textarea>
+
+    </ng-container>
+
+    <!-- message to the user after clicking on send -->
+    <ng-template #afterSend>
+      <div class="after-send-text-message" [ngStyle]="{'flex-direction': !!ticketId ? 'column' : 'row'}">
+        <ng-container *ngIf="!!ticketId; else errorOnSendSupportEmail">
+          <div>A ticket to support team has been opened successfully.</div>
+          <div>Ticket Id: {{ticketId}}</div>
+        </ng-container>
+        <ng-template #errorOnSendSupportEmail>
+          <mat-icon class="error-icon">error_outline</mat-icon>
+          <span>Cannot Send Email to support please send an email manually</span>
+        </ng-template>
+      </div>
+    </ng-template>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions mat-dialog-actions class="dialog-action">
+    <button mat-raised-button (click)="operation()" [disabled]="isDisableActionButton(supportForm)">
+      <div [ngClass]="{'button-content-container': isLoading}">
+        <span>{{this.getButtonName()}}</span>
+        <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" diameter="15"></mat-progress-spinner>
+      </div>
+    </button>
+  </mat-dialog-actions>
+</form>

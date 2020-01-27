@@ -1,0 +1,24 @@
+<table class="mat-calendar-table">
+  <thead class="mat-calendar-table-header">
+  <tr>
+    <th *ngFor="let day of _weekdays" [attr.aria-label]="day.long">{{day.narrow}}</th>
+  </tr>
+  <tr>
+    <th class="mat-calendar-table-header-divider" colspan="7" aria-hidden="true"></th>
+  </tr>
+  </thead>
+  <vb-calendar-body [label]="_monthLabel" [rows]="_weeks" [todayValue]="_todayDate" [selectedValue]="_selectedDate"
+                    [selectedRangeEndValue]="_selectedRangeEndDate"
+                    [allInRange]="_allInRange" [range]="_rangable" [labelMinRequiredCells]="3"
+                    [activeCell]="_dateAdapter.getDate(activeDate) - 1"
+                    (keydown)="_handleCalendarBodyKeydown($event)" (selectedValueChange)="_dateSelected($event)">
+  </vb-calendar-body>
+</table>
+<div class="date-buttons-group">
+  <button (click)="selectToday()">Today</button>
+  <button (click)="selectYesterday()">Yesterday</button>
+  <button (click)="selectLastSevenDays()">Last 7 Days</button>
+  <button (click)="selectLastThirtyDays()">Last 30 Days</button>
+  <button (click)="getCurrentMonth()">This Month</button>
+  <button (click)="getLastMonth()">Last Month</button>
+</div>

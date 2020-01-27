@@ -1,0 +1,14 @@
+<mat-form-field class="vendor-input-field">
+  <!-- Vendor Input Block -->
+  <span
+    matPrefix>Selected {{'' + (selectedVendors?.length ? ' (' + selectedVendors?.length + ')' : '(0)')}}&nbsp;</span>
+  <input #input matInput [placeholder]="placeholder" [formControl]="vendorCtrl" [matAutocomplete]="vendorsAC">
+</mat-form-field>
+<!-- Countries List -->
+<mat-autocomplete #vendorsAC="matAutocomplete" [displayWith]="" (optionSelected)="selectVendor($event)">
+  <mat-option *ngFor="let vendor of filteredVendors" [value]="vendor">
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlexOffset="10px" [class.selected]="isVendorSelected(vendor.vendorId)">{{vendor.formalName}}</div>
+    </div>
+  </mat-option>
+</mat-autocomplete>

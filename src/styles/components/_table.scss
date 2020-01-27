@@ -1,0 +1,51 @@
+@import "../variables";
+
+.mat-table {
+  align-items: flex-start;
+  border-color: $table-border-color;
+  border-radius: 5px;
+  border-spacing: 10px;
+  box-shadow: 0 1px 2px 0 rgba(37, 78, 210, 0.08);
+  color: $dark-text;
+  display: flex;
+  flex-flow: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 14px;
+  height: 100%;
+  margin-top: 30px;
+  overflow: auto;
+  white-space: nowrap;
+  width: 100%;
+
+  .mat-header-cell {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 600;
+    margin-right: 10px;
+    word-wrap: break-word;
+
+    .mat-sort-header-button {
+      text-transform: none;
+    }
+  }
+
+  .mat-row,
+  .mat-header-row {
+    flex-shrink: 0;
+    min-width: 100%;
+  }
+
+  .mat-row {
+    cursor: pointer;
+    &:hover {
+      background-color: $table-mouse-hover-color;
+    }
+  }
+
+  .mat-cell {
+    align-self: normal;
+    margin-right: 10px;
+  }
+}

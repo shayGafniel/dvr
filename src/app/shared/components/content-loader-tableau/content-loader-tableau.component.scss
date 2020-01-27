@@ -1,0 +1,14 @@
+:host {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.content-loader-tableau {
+  height: 100%;
+
+  &__row {
+    margin-bottom: 32px;
+  }
+}

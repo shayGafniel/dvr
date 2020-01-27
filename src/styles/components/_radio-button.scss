@@ -1,0 +1,71 @@
+@import "../helpers";
+@import "../variables";
+
+.mat-radio-button {
+  font-size: 14px;
+
+  .mat-radio-container {
+    height: emFrom(20);
+    width: emFrom(20);
+  }
+
+  // Unselected
+  &:not([disabled]):not(.mat-radio-checked) .mat-radio-container {
+    .mat-radio-outer-circle {
+      @extend .bg-checkbox;
+      border: emFrom(1) solid currentColor;
+      color: $checkbox-border-color;
+    }
+  }
+
+  // Selected
+  &.mat-radio-checked {
+    .mat-radio-outer-circle {
+      @extend .color-primary;
+      background-color: currentColor;
+      border: none;
+    }
+
+    .mat-radio-inner-circle {
+      background: #fff;
+      bottom: 0;
+      height: 80%;
+      left: 0;
+      margin: auto;
+      right: 0;
+      top: 0;
+      width: 80%;
+    }
+
+    // Selected and disabled
+    &[disabled] {
+      .mat-radio-outer-circle {
+        @extend .color-disabled-checkbox;
+      }
+    }
+  }
+
+  // Color on over
+  &:not([disabled]) .mat-radio-container {
+    &:hover {
+      .mat-radio-outer-circle {
+        @extend .color-over;
+      }
+    }
+  }
+
+  // Unselected and disabled
+  &[disabled]:not(.mat-radio-checked) .mat-radio-outer-circle {
+    @extend .bg-disabled-checkbox;
+    border: none;
+  }
+
+  .mat-radio-outer-circle {
+    height: 100%;
+    width: 100%;
+  }
+
+  .mat-radio-persistent-ripple {
+    display: none;
+  }
+}

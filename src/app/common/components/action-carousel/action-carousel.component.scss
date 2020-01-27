@@ -1,0 +1,55 @@
+.action-carousel-title {
+  color: #fff;
+  margin: 0 0 1em;
+}
+
+.action-carousel {
+  &__nav {
+    animation: fadeIn 450ms 1;
+    color: #fff;
+    font-size: 2.4em;
+    position: fixed;
+    top: 50vh;
+    transform: translateY(-50%);
+
+    &_back {
+      left: 2vw;
+    }
+    &_forward {
+      right: 2vw;
+    }
+  }
+
+  ::ng-deep .ngucarousel {
+    .item {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+    .tile {
+      box-shadow: none;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0%,
+  90% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.action-carousel-close {
+  animation: fadeIn 450ms 1;
+  color: #fff;
+  font-size: 1.4em;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}

@@ -1,0 +1,139 @@
+<div class="refunds-approve-list shadowed-block">
+  <div
+    *ngFor="let group of groupedTrees | keyvalue; let isFirst = first"
+    class="refunds-approve-list__country-group"
+  >
+    <div
+      *ngIf="(groupedRefundNodes | keyvalue).length"
+      class="refunds-approve-list__header"
+      fxLayout="row"
+    >
+      <div fxFlex fxLayoutAlign="start center">
+        {{ getCountryNameByCode(group.key) }}
+      </div>
+      <div *ngIf="isFirst" fxFlex="90px" fxLayout="row" fxLayoutAlign="flex-end center"># of Invoices</div>
+      <div *ngIf="isFirst" fxFlex="75px" fxLayout="row" fxLayoutAlign="flex-end center">Amount</div>
+    </div>
+
+    <mat-tree [dataSource]="group.value.dataSource" [treeControl]="group.value.treeControl">
+
+      <!-- Descendant node without children -->
+      <mat-tree-node
+        *matTreeNodeDef="let node"
+        [class.refunds-approve-list__node_is-expandable]="group.value.treeControl.isExpandable(node)"
+        class="refunds-approve-list__node"
+        fxLayout="row"
+        fxLayoutAlign="space-between"
+        matTreeNodeToggle
+        matTreeNodePadding
+      >
+        <div
+          class="refunds-approve-list__name"
+          fxFlex="calc(100% - 90px - 75px - 40px - 35px)"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+        >{{ asFlatNode(node).item }}</div>
+        <div fxFlex="90px" fxLayout="row" fxLayoutAlign="flex-end center">
+          <div *ngIf="asFlatNode(node).refund.details.count">
+            {{ asFlatNode(node).refund.details.count | number }}
+          </div>
+        </div>
+        <div fxFlex="75px" fxLayout="row" fxLayoutAlign="flex-end center">
+          {{ asFlatNode(node).refund.details.amount | currency:currencySymbol:'symbol':'1.0-0' }}
+        </div>
+        <div class="refunds-approve-list__comment" fxFlex="40px" fxLayout="row" fxLayoutAlign="center center">
+          <app-comment-popup
+            *ngIf="commentFormState; else readonlyCommentChild"
+            [accountId]="accountId"
+            [entityId]="entityId"
+            [formState]="commentFormState"
+            [refundId]="asFlatNode(node).refund.id"
+            class="refunds-approve-list__icon-btn refunds-approve-list__comment-popup"
+            maxlength="300"
+            title="Add comment"
+          ></app-comment-popup>
+          <ng-template #readonlyCommentChild>
+            <mat-icon
+              *ngIf="asFlatNode(node).refund.comment"
+              [matTooltip]="asFlatNode(node).refund.comment"
+              class="refunds-approve-list__helper"
+              color="primary"
+              matTooltipClass="pre-tooltip"
+              svgIcon="app:note"
+            ></mat-icon>
+          </ng-template>
+        </div>
+        <div class="refunds-approve-list__pictures" fxFlex="35px" fxLayout="row" fxLayoutAlign="start center">
+          <button
+            (click)="onImagesOpen(asFlatNode(node).refund.details.images, asFlatNode(node).item)"
+            [disabled]="!asFlatNode(node).refund.details.images?.length"
+            class="refunds-approve-list__icon-btn relative-button"
+            mat-icon-button
+          >
+            <mat-icon svgIcon="app:pictures"></mat-icon>
+          </button>
+        </div>
+      </mat-tree-node>
+
+      <!-- Parent node with children -->
+      <mat-tree-node
+        *matTreeNodeDef="let node; when: hasChild"
+        [class.refunds-approve-list__node_is-expandable]="group.value.treeControl.isExpandable(node)"
+        class="refunds-approve-list__node"
+        matTreeNodePadding
+      >
+        <button
+          aria-label="toggle"
+          class="refunds-approve-list__extend-button"
+          fxFlex="26px"
+          mat-icon-button
+          matTreeNodeToggle
+        >
+          <mat-icon
+            [class.refunds-approve-list__extend-icon_is-extended]="group.value.treeControl.isExpanded(node)"
+            class="refunds-approve-list__extend-icon"
+            svgIcon="app:arrow_down"
+          ></mat-icon>
+        </button>
+        <div
+          class="refunds-approve-list__name"
+          fxFlex="calc(100% - 33px - 90px - 75px - 40px - 35px)"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+        >{{ asFlatNode(node).item }}</div>
+        <div fxFlex="90px"></div>
+        <div fxFlex="75px" fxLayout="row" fxLayoutAlign="flex-end center">
+          {{ getDescendantsAmount(node, group.key) | currency:currencySymbol:'symbol':'1.0-0' }}
+        </div>
+        <div class="refunds-approve-list__comment" fxFlex="40px" fxLayout="row" fxLayoutAlign="center center">
+          <app-comment-popup
+            *ngIf="commentFormState; else readonlyCommentParent"
+            [accountId]="accountId"
+            [badge]="getChildrenCommentsCountByStore(asFlatNode(node).refund.children)"
+            [entityId]="entityId"
+            [formState]="commentFormState"
+            [refundId]="asFlatNode(node).refund.id"
+            class="refunds-approve-list__icon-btn refunds-approve-list__comment-popup"
+            maxlength="300"
+            title="Add comment"
+          ></app-comment-popup>
+          <ng-template #readonlyCommentParent>
+            <mat-icon
+              *ngIf="asFlatNode(node).refund.comment || getChildrenCommentsCountByNode(node)"
+              [class.color-blue]="asFlatNode(node).refund.comment"
+              [class.color-labels-and-icons]="!asFlatNode(node).refund.comment"
+              [class.refunds-approve-list__helper]="asFlatNode(node).refund.comment"
+              [matBadge]="getChildrenCommentsCountByNode(node)"
+              [matBadgeHidden]="!getChildrenCommentsCountByNode(node)"
+              [matTooltip]="asFlatNode(node).refund.comment"
+              matBadgeSize="small"
+              matTooltipClass="pre-tooltip"
+              svgIcon="app:note"
+            ></mat-icon>
+          </ng-template>
+        </div>
+        <div fxFlex="35px"></div>
+      </mat-tree-node>
+    </mat-tree>
+  </div>
+</div>

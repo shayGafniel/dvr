@@ -1,0 +1,104 @@
+@import "./variables";
+
+@function emFrom($size) {
+  @return ($size / $basefont) + 0em;
+}
+
+.bg-background {
+  background-color: $background;
+}
+.bg-primary {
+  background-color: mat-color($primary);
+}
+.bg-dark-primary {
+  background-color: mat-color($dark-primary);
+}
+.bg-accent {
+  background-color: mat-color($accent);
+}
+.bg-dark-accent {
+  background-color: mat-color($dark-accent);
+}
+.bg-darker-accent {
+  background-color: mat-color($darker-accent);
+}
+.bg-warn {
+  background-color: mat-color($warn);
+}
+.bg-active {
+  background-color: $active;
+}
+.bg-disabled {
+  background-color: $disabled;
+}
+.bg-disabled-checkbox {
+  background-color: $disabled-checkbox;
+}
+.bg-readonly {
+  background-color: $readonly;
+}
+.bg-over {
+  background-color: $over;
+}
+.bg-icon {
+  background-color: $icon;
+}
+.bg-checkbox {
+  background-color: $checkbox;
+}
+.bg-alert {
+  background-color: $alert;
+}
+.bg-ok {
+  background-color: $ok;
+}
+
+.color-light-text {
+  color: $light-text;
+}
+.color-text {
+  color: $text;
+}
+.color-title {
+  color: $title-color;
+}
+.color-blue,
+.color-primary {
+  color: mat-color($primary);
+}
+.color-dark-primary {
+  color: mat-color($dark-primary);
+}
+.color-accent {
+  color: mat-color($accent);
+}
+.color-dark-accent {
+  color: mat-color($dark-accent);
+}
+.color-darker-accent {
+  color: mat-color($darker-accent);
+}
+.color-warn {
+  color: mat-color($warn);
+}
+.color-active {
+  color: $active;
+}
+.color-disabled {
+  color: $disabled;
+}
+.color-disabled-checkbox {
+  @extend .color-labels-and-icons;
+}
+.color-over {
+  color: $over;
+}
+.color-labels-and-icons {
+  color: $labels-and-icons;
+}
+.color-alert {
+  color: $alert;
+}
+.color-ok {
+  color: $ok;
+}

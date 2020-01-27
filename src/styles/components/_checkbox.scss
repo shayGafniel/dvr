@@ -1,0 +1,83 @@
+@import "../helpers";
+@import "../variables";
+
+.mat-checkbox {
+  font-size: 14px;
+
+  .mat-checkbox-inner-container {
+    height: emFrom(20);
+    width: emFrom(20);
+  }
+
+  // Without border
+  &[disabled],
+  &.mat-checkbox-disabled,
+  &.mat-checkbox-checked,
+  &.mat-checkbox-indeterminate {
+    .mat-checkbox-frame,
+    .mat-checkbox-background {
+      background-color: currentColor;
+      border-color: currentColor;
+    }
+  }
+
+  // Filling with color
+  &.mat-checkbox-checked,
+  &.mat-checkbox-indeterminate {
+    .mat-checkbox-frame,
+    .mat-checkbox-background {
+      @extend .color-primary;
+    }
+  }
+
+  // Color on over
+  &:not([disabled]):not(.mat-checkbox-disabled) {
+    .mat-checkbox-inner-container:hover {
+      .mat-checkbox-frame,
+      .mat-checkbox-background {
+        @extend .color-over;
+      }
+    }
+  }
+
+  // Disabled checked
+  &.mat-checkbox-disabled.mat-checkbox-checked {
+    .mat-checkbox-frame,
+    .mat-checkbox-background {
+      @extend .color-disabled-checkbox;
+    }
+  }
+
+  // Unchecked styles
+  .mat-checkbox-frame,
+  .mat-checkbox-background {
+    @extend .bg-checkbox;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    color: $checkbox-border-color;
+  }
+
+  // Indeterminate styles
+  .mat-checkbox-mixedmark {
+    border-radius: 1px;
+    height: 44.5%;
+    width: 44.5%;
+  }
+
+  // Checkmark styles
+  .mat-checkbox-checkmark {
+    margin: 1px auto;
+    width: 89%;
+  }
+  .mat-checkbox-checkmark-path {
+    stroke-width: 4px;
+  }
+
+  .mat-checkbox-persistent-ripple {
+    display: none;
+  }
+
+  .mat-checkbox-label {
+    line-height: emFrom(24);
+  }
+}

@@ -1,0 +1,16 @@
+@import "../../styles/shared";
+@import "../../../../styles/variables";
+
+.approve {
+  &__status {
+    margin-left: 20px;
+  }
+  &__status-value {
+    display: inline-block;
+    text-transform: lowercase;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

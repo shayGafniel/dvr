@@ -1,0 +1,12 @@
+<mat-label class="button-toggle-label">{{ label }}</mat-label>
+
+<mat-button-toggle-group
+  (change)="onChange($event)"
+  [disabled]="disabled"
+  [value]="value"
+  appearance="legacy"
+>
+  <mat-button-toggle *ngFor="let item of items" [value]="item.value">
+    {{ item.viewValue }}
+  </mat-button-toggle>
+</mat-button-toggle-group>

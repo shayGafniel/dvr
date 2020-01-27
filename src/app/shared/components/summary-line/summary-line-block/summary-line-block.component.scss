@@ -1,0 +1,32 @@
+@import "../../../../../styles/variables";
+.summary-line-block {
+  background-color: #fff;
+  border: solid 1px #ebedf4;
+  box-sizing: border-box;
+  height: 60px;
+  padding: 6px 7px;
+  cursor: pointer;
+
+  &.active,
+  &:hover {
+    background-color: $table-mouse-hover-color;
+    border: solid 1px #37a8e4;
+  }
+
+  &__second-row {
+    margin-top: 3px;
+  }
+
+  &__icon {
+    font-size: 26px;
+  }
+
+  &__count {
+    font-size: 18px;
+  }
+
+  &__label {
+    margin-right: 0.3em;
+    white-space: nowrap;
+  }
+}

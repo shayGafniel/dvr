@@ -1,0 +1,46 @@
+.image {
+  background-size: contain;
+  transition: all, ease-out, transform 0.4s;
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  background-color: #fff !important;
+}
+
+.btn-container {
+  height: 40px;
+}
+
+.image-parent {
+  overflow: auto;
+  background-color: #e6e6e6;
+  position: relative;
+}
+
+.rotate,
+.zoom {
+  font-size: 30px;
+}
+
+.rotate:hover,
+.zoom:hover,
+.marker-icon:hover {
+  cursor: pointer;
+  color: deepskyblue;
+}
+
+.gray-out-icon {
+  cursor: none;
+  pointer-events: none;
+  color: gray;
+}
+
+.marker-icon {
+  cursor: pointer;
+  font-size: 30px;
+  padding-left: 10px;
+}
+
+.markers-off {
+  color: gray;
+}

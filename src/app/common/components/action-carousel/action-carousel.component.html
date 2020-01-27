@@ -1,0 +1,26 @@
+<h3 *ngIf="title" class="action-carousel-title">{{ title }}</h3>
+
+<mat-dialog-content class="action-carousel">
+  <ngu-carousel [dataSource]="images" [inputs]="carouselBanner">
+    <ngu-tile *nguCarouselDef="let image;">
+      <common-image-viewer [draggableMinWidth]="500" [image]="image"></common-image-viewer>
+    </ngu-tile>
+
+    <button
+      [style.display]="images.length <= 1 ? 'none' : ''"
+      class="relative-button action-carousel__nav action-carousel__nav_back"
+      mat-icon-button
+      NguCarouselPrev
+    ><mat-icon>keyboard_arrow_left</mat-icon></button>
+    <button
+      [style.display]="images.length <= 1 ? 'none' : ''"
+      class="relative-button action-carousel__nav action-carousel__nav_forward"
+      mat-icon-button
+      NguCarouselNext
+    ><mat-icon>keyboard_arrow_right</mat-icon></button>
+  </ngu-carousel>
+</mat-dialog-content>
+
+<button class="action-carousel-close relative-button" mat-dialog-close mat-icon-button>
+  <mat-icon>close</mat-icon>
+</button>

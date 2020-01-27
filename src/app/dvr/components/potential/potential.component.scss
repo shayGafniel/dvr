@@ -1,0 +1,154 @@
+@import "../../../../styles/helpers";
+@import "../../../../styles/variables";
+
+$left-space: 20px;
+
+:host {
+  display: block;
+  height: 100%;
+  position: sticky;
+  top: 0;
+}
+
+.potential {
+  height: 100%;
+
+  &__pie-chart,
+  &__linear-chart {
+    background: #fff;
+  }
+  &__linear-chart {
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    min-height: 237px;
+    padding-bottom: 5px;
+  }
+  &__pie-chart {
+    height: 343px;
+  }
+}
+
+.linear-chart {
+  &__currency {
+    border-bottom: 1px solid $table-border-color;
+    margin: 0;
+    padding: 9px 0 9px $left-space;
+  }
+
+  &__chart-container {
+    border-bottom: 1px solid $table-border-color;
+    padding: 6px $left-space 10px $left-space;
+  }
+  &__chart {
+    display: block;
+    height: 15px;
+    margin-top: 8px;
+  }
+
+  &__value-container {
+    border-bottom: 1px solid $table-border-color;
+
+    &:last-of-type {
+      border-bottom-width: 0;
+    }
+  }
+  &__value {
+    padding: 7px $left-space 6px #{$left-space + 3};
+  }
+  &__circle {
+    padding-top: 2px;
+  }
+  &__value-label {
+    text-transform: capitalize;
+  }
+}
+
+.pie-chart {
+  position: relative;
+
+  &__container {
+    position: relative;
+  }
+
+  &__labels {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &__chart {
+    max-width: 70%;
+    width: 225px;
+  }
+
+  &__label {
+    $vertical-space: 15px;
+
+    font-weight: bold;
+    height: 50%;
+    position: absolute;
+    text-transform: capitalize;
+    width: 7.5em;
+
+    &:nth-child(1) {
+      right: 0;
+      top: $vertical-space;
+    }
+    &:nth-child(2) {
+      bottom: $vertical-space;
+      right: 0;
+    }
+    &:nth-child(3) {
+      bottom: $vertical-space;
+      left: $left-space;
+    }
+    &:nth-child(4) {
+      left: $left-space;
+      top: $vertical-space;
+    }
+    &:nth-child(2),
+    &:nth-child(3) {
+      height: 2.5em;
+    }
+  }
+
+  &__total {
+    margin-top: -2.4em;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    text-shadow: rgb(255, 255, 255) 2px 0 0, rgb(255, 255, 255) 1.75517px 0.958851px 0,
+      rgb(255, 255, 255) 1.0806px 1.68294px 0, rgb(255, 255, 255) 0.141474px 1.99499px 0,
+      rgb(255, 255, 255) -0.832294px 1.81859px 0, rgb(255, 255, 255) -1.60229px 1.19694px 0,
+      rgb(255, 255, 255) -1.97998px 0.28224px 0, rgb(255, 255, 255) -1.87291px -0.701566px 0,
+      rgb(255, 255, 255) -1.30729px -1.5136px 0, rgb(255, 255, 255) -0.421592px -1.95506px 0,
+      rgb(255, 255, 255) 0.567324px -1.91785px 0, rgb(255, 255, 255) 1.41734px -1.41108px 0,
+      rgb(255, 255, 255) 1.92034px -0.558831px 0;
+    width: 100%;
+  }
+}
+
+.potential-title {
+  margin: 13px $left-space 0;
+}
+
+.potential-label {
+  @extend .color-labels-and-icons;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.entity-loader {
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 375px;
+
+  & > .mat-spinner {
+    margin: auto;
+  }
+}

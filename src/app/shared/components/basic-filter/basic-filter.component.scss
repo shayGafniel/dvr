@@ -1,0 +1,14 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/helpers";
+
+.container {
+  display: flex;
+  margin-bottom: 13px;
+
+  .item {
+    padding-right: 15px;
+    mat-select {
+      min-width: 180px;
+    }
+  }
+}

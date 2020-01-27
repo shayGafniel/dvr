@@ -1,0 +1,110 @@
+<div *ngIf="mainFilters$ | async as mainFilters" class="container">
+  <ng-container *ngFor="let filterName of basicFilters[filterPage]">
+    <ng-container [ngSwitch]="filterName">
+      <div *ngSwitchCase="FilterLabels.Country" class="item">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setCountries($event)"
+          [componentLabel]="filterName"
+          [defaultSelectAllItem]="defaultCountries[0]"
+          [items]="countriesOptions$ | async"
+          [selectedItems]="mainFilters.countries || defaultCountries"
+          keyName="code"
+        ></app-multiselect-autocomplete>
+      </div>
+
+      <div *ngSwitchCase="FilterLabels.DirectiveInvoices" class="item">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setDirectivesInvoices($event)"
+          [componentLabel]="filterName"
+          [defaultSelectAllItem]="defaultDirectives[0]"
+          [items]="directivesInvoicesOptions"
+          [selectedItems]="mainFilters.directives_invoices || defaultDirectives"
+          displayName="viewValue"
+          keyName="value"
+        ></app-multiselect-autocomplete>
+      </div>
+
+      <div *ngSwitchCase="FilterLabels.DirectiveReclaims" class="item">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setDirectivesReclaims($event)"
+          [componentLabel]="filterName"
+          [defaultSelectAllItem]="defaultDirectives[0]"
+          [items]="directivesReclaimsOptions"
+          [selectedItems]="mainFilters.directives_reclaims || defaultDirectives"
+          displayName="viewValue"
+          keyName="value"
+        ></app-multiselect-autocomplete>
+      </div>
+
+      <div *ngSwitchCase="FilterLabels.EntityName" class="item">
+        <app-multiselect-autocomplete
+          (selectionEnded)="setCompanies($event)"
+          [componentLabel]="filterName"
+          [defaultSelectAllItem]="defaultCompanies[0]"
+          [items]="companiesOptions$ | async"
+          [selectedItems]="mainFilters.companies || defaultCompanies"
+          keyName="id"
+        ></app-multiselect-autocomplete>
+      </div>
+
+      <div *ngSwitchCase="FilterLabels.ExpenseTypeBy" class="item button-toggle">
+        <app-button-toggle
+          (change)="setExpenseTypeBy($event)"
+          [disabled]="disabledExpenseTypeBy"
+          [items]="expenseTypeByOptions"
+          [label]="filterName"
+          [value]="mainFilters.expense_type_by"
+        ></app-button-toggle>
+      </div>
+
+      <div *ngSwitchCase="FilterLabels.InvoiceId" class="item">
+        <mat-form-field>
+          <input
+            [formControl]="invoiceIdFormControl"
+            [placeholder]="filterName"
+            matInput
+            onlyPositiveNumber
+          >
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase="FilterLabels.ReclaimId" class="item">
+        <mat-form-field>
+          <input
+            [formControl]="reclaimIdFormControl"
+            [placeholder]="filterName"
+            matInput
+            onlyPositiveNumber
+          >
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase="FilterLabels.TimeFrame" class="item">
+        <time-frame
+          (selectionChange)="setTimeFrame($event)"
+          [value]="mainFilters.time_frame"
+        ></time-frame>
+      </div>
+
+      <div *ngSwitchDefault class="item">
+        <span class="color-warn">Unknown filter {{ filterName }}</span>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="item clear-filter">
+    <button (click)="resetFilter()" mat-icon-button>
+      <mat-icon svgIcon="app:clear_filter"></mat-icon>
+    </button>
+  </div>
+  <div class="item all-filters">
+    <a
+      (click)="openAdvancedFilterDialog()"
+      [matBadge]="(mainFiltersCount$ | async).toString()"
+      [matBadgeHidden]="(mainFiltersCount$ | async) === 0"
+      matBadgeSize="small"
+    >All Filters</a>
+  </div>
+</div>

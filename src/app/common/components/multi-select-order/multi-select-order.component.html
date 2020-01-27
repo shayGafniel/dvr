@@ -1,0 +1,13 @@
+<mat-form-field>
+  <mat-select
+    [multiple]="true"
+    [ngrxFormControlState]="ngrxFormControlStateArray"
+    [placeholder]="placeholder"
+  >
+    <div class="dragula-container" [dragula]="dragulaBag" [(dragulaModel)]="options">
+      <mat-option *ngFor="let option of options" [value]="option.value" #optionEl>
+        <img *ngIf="option.icon" [src]="option.icon" class="multi-select-icon"> {{ option.display }}
+      </mat-option>
+    </div>
+  </mat-select>
+</mat-form-field>

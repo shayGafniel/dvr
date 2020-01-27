@@ -1,0 +1,36 @@
+<form
+  [ngrxFormState]="formState"
+  fxLayout="row nowrap"
+  fxLayoutGap="15px"
+  novalidate
+>
+  <mat-form-field fxFlex="180px">
+    <input
+      [ngrxFormControlState]="formState.controls.id"
+      matInput
+      placeholder="Case ID"
+    >
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <time-frame (selectionChange)="onTimeFrameSelect($event)" [value]="selectedTimeFrame"></time-frame>
+
+  <app-multiselect-autocomplete
+    (selectionEnded)="onSetEntities($event)"
+    [defaultSelectAllItem]="entityDefaultValue"
+    [items]="multiselectEntities"
+    [selectedItems]="multiselectSelectedEntities"
+    componentLabel="Entity name"
+    keyName="id"
+  ></app-multiselect-autocomplete>
+
+  <div class="clear-filter">
+    <button
+      (click)="onFilterReset()"
+      mat-icon-button
+      id="filter btn"
+    >
+      <mat-icon svgIcon="app:clear_filter"></mat-icon>
+    </button>
+  </div>
+</form>

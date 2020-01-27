@@ -1,0 +1,60 @@
+vb-calendar {
+  &.mat-calendar {
+    width: auto !important;
+  }
+  .mat-calendar-table {
+    min-width: 280px;
+  }
+  .date-buttons-group {
+    box-sizing: border-box;
+    padding-left: 8px;
+    padding-top: 40px;
+    text-align: center;
+    width: 108px;
+
+    button {
+      background-color: #f5f5f5;
+      border: 1px solid #f5f5f5;
+      outline: none;
+      text-transform: none;
+      width: 100px;
+      padding: 5px;
+      margin-bottom: 5px;
+      color: #3480ab;
+      text-align: left;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background-color: #eee7e7;
+      }
+    }
+  }
+}
+
+.mat-datepicker-content.vb-datepicker-range .vb-calendar-body-range {
+  .vb-calendar-body-in-range {
+    background-color: #6874b4;
+
+    &.vb-calendar-body-range-start {
+      border-radius: 100% 0 0 100%;
+    }
+
+    &.vb-calendar-body-range-end {
+      border-radius: 0 100% 100% 0;
+    }
+
+    &.vb-calendar-body-range-end.vb-calendar-body-range-start {
+      border-radius: 100% 100% 100% 100%;
+    }
+  }
+}
+
+.formed-tabled {
+  .mat-form-field-underline {
+    bottom: 0.5em;
+  }
+  .mat-form-field-wrapper {
+    padding-bottom: 0.5em;
+    padding-top: 0.15em;
+  }
+}

@@ -1,0 +1,162 @@
+@import "~@angular/material/theming";
+
+@import "../app/common/styles/variables";
+
+/* Theme variables */
+
+$light-text: #fff;
+$dark-text: #101d3a;
+
+$primary-colors: (
+  50: #e5f6ff,
+  100: #bee9ff,
+  200: #93dbff,
+  300: #67cdfe,
+  400: #47c2fe,
+  500: #26b7fe,
+  600: #22b0fe,
+  700: #1ca7fe,
+  800: #179ffe,
+  900: #0d90fd,
+  A100: #ffffff,
+  A200: #f5faff,
+  A400: #c2e1ff,
+  A700: #a8d4ff,
+  contrast: (
+    50: $dark-text,
+    100: $dark-text,
+    200: $dark-text,
+    300: $dark-text,
+    400: $dark-text,
+    500: $light-text,
+    600: $light-text,
+    700: $light-text,
+    800: $light-text,
+    900: $light-text,
+    A100: $dark-text,
+    A200: $dark-text,
+    A400: $dark-text,
+    A700: $dark-text,
+  ),
+);
+
+$red-colors: (
+  50: #ffecec,
+  100: #ffd1cf,
+  200: #ffb2af,
+  300: #fe938f,
+  400: #fe7b77,
+  500: #fe645f,
+  600: #fe5c57,
+  700: #fe524d,
+  800: #fe4843,
+  900: #fd3632,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffdcdb,
+  A700: #ffc3c2,
+  contrast: (
+    50: $dark-text,
+    100: $dark-text,
+    200: $dark-text,
+    300: $dark-text,
+    400: $light-text,
+    500: $light-text,
+    600: $light-text,
+    700: $light-text,
+    800: $light-text,
+    900: $light-text,
+    A100: $dark-text,
+    A200: $dark-text,
+    A400: $dark-text,
+    A700: $dark-text,
+  ),
+);
+
+$dark-colors: (
+  50: #e3e5e9,
+  100: #b9bec8,
+  200: #8b93a4,
+  300: #5d6880,
+  400: #3a4764,
+  500: #172749,
+  600: #142342,
+  700: #111d39,
+  800: #0d1731,
+  900: #070e21,
+  A100: #5f7aff,
+  A200: #2c4fff,
+  A400: #0029f8,
+  A700: #0025df,
+  contrast: (
+    50: $dark-text,
+    100: $dark-text,
+    200: $dark-text,
+    300: $light-text,
+    400: $light-text,
+    500: $light-text,
+    600: $light-text,
+    700: $light-text,
+    800: $light-text,
+    900: $light-text,
+    A100: $dark-text,
+    A200: $light-text,
+    A400: $light-text,
+    A700: $light-text,
+  ),
+);
+
+$primary: mat-palette($primary-colors);
+$accent: mat-palette($primary-colors);
+$warn: mat-palette($red-colors);
+
+$dark-primary: mat-palette($primary-colors, 400);
+$dark-accent: mat-palette($dark-colors, 200);
+$dark-warn: mat-palette($red-colors);
+
+$darker-accent: mat-palette($dark-colors);
+
+/* Colors */
+
+$active: #21caff;
+$active-green: #2eba6f;
+$alert: #ffac1c;
+$background: #eff1f6;
+$checkbox-border-color: #d1d6e5;
+$checkbox: #eff1f6;
+$dialog-bg: #f5f6fa;
+$disabled: #d3d7e7;
+$disabled-checkbox: $checkbox;
+$disabled-darken: darken($disabled, 10%);
+$divider: #ebebeb;
+$dvr-grey: mat-color($darker-accent);
+$icon: rgba(136, 177, 195, 0.3);
+$invoices-label-color: #a9b6c6;
+$labels-and-icons: #a9b6c6;
+$ok: #00c427;
+$over: #25a3e0;
+$p-stations-headers: rgb(60, 170, 170);
+$readonly: $checkbox;
+$section-border-color: #cbd0e3;
+$side-bar-active-bg-color: #446f9c;
+$side-bar-active-text-color: #87cbf0;
+$side-bar-bg-color: #154a82;
+$side-bar-non-active-text-color: #a1b7ce;
+$skeleton-body: #e6ebf1;
+$skeleton-title: #dbe1e9;
+$table-background-color: #eceef6;
+$table-border-color: #e4e7f2;
+$table-mouse-hover-color: #afdbf4;
+$text-field-border-color: #dfe2ec;
+$text: $dark-text;
+$title-color: #5f7590;
+
+/* Numbers */
+
+$basefont: 14;
+$breadcrumb-height: 62px;
+$form-field-space: 1.25em + 0.4375em;
+$header-height: 64px;
+$layout-space: 30px;
+$min-width: 1098px;
+$p-stations-headers-font-size: 16px;

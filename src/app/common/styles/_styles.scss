@@ -1,0 +1,104 @@
+@import "./variables";
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+// ng2-DND styles
+.dnd-drag-start {
+  -moz-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  opacity: 0.7;
+  border: 2px dashed #000;
+}
+.dnd-drag-enter {
+  opacity: 0.7;
+  border: 2px dashed #000;
+}
+.dnd-drag-over {
+  border: 2px dashed #000;
+}
+.dnd-sortable-drag {
+  -moz-transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+  opacity: 0.7;
+  border: 1px dashed #000;
+}
+
+a.relative-button,
+button.relative-button {
+  height: 2.857em;
+  line-height: 2.857em;
+  width: 2.857em;
+
+  mat-icon.mat-icon {
+    font-size: 1.71em;
+    height: 1em;
+    line-height: 1em;
+    width: 1em;
+  }
+}
+
+mat-icon.relative-icon {
+  height: 1em;
+  line-height: 1em;
+  width: 1em;
+}
+
+.multi-select-icon {
+  height: 1.3em;
+  max-width: 2em;
+  position: relative;
+  top: 2px;
+  vertical-align: text-bottom;
+  width: auto;
+}
+
+.dialog-image-viewer {
+  .mat-dialog-container {
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+    padding: 0;
+  }
+
+  *,
+  .mat-dialog-content {
+    max-height: 80vh;
+  }
+
+  img {
+    background: #fff;
+  }
+}
+
+.suffix-drop-down-like {
+  color: rgba(0, 0, 0, 0.54);
+  left: 3px;
+  position: relative;
+  top: 6px;
+}
+.dark-theme {
+  .suffix-drop-down-like {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+.mat-focused {
+  .suffix-drop-down-like {
+    @extend .mat-primary;
+  }
+}
+
+.menu-with-textarea .mat-menu-content:not(:empty) {
+  padding: 4px 2px;
+}

@@ -1,0 +1,145 @@
+@import "../../../../styles/helpers";
+@import "../../../../styles/variables";
+
+$color: rgba(255, 255, 255, 1);
+
+.navigation {
+  border-top: 1px solid $side-bar-active-bg-color;
+  color: $color;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    height: $header-height;
+    position: fixed;
+    top: 0;
+  }
+
+  &__parent {
+    border-bottom: 1px solid $side-bar-active-bg-color;
+    padding: 4px 0;
+    a {
+      box-sizing: border-box;
+      height: 40px;
+      padding: 11px 0 0 45px;
+    }
+  }
+
+  &__child {
+    border-bottom: 1px solid $side-bar-active-bg-color;
+    padding: 5px 0;
+  }
+
+  &__item {
+    &:not(:first-child) {
+      margin-top: 5px;
+    }
+  }
+
+  &__title {
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0 10px;
+    &.active {
+      background: $side-bar-active-bg-color;
+      border-radius: 5px;
+      height: 40px;
+      a {
+        color: $side-bar-active-text-color;
+      }
+    }
+
+    &:hover:not(&_support) {
+      background: $side-bar-active-bg-color;
+      border-radius: 5px;
+      height: 40px;
+      a {
+        color: $side-bar-active-text-color;
+      }
+    }
+
+    &.curr-group {
+      a {
+        font-weight: 600;
+        color: $side-bar-active-text-color;
+      }
+    }
+
+    a {
+      color: $side-bar-non-active-text-color;
+      display: block;
+      padding-left: 6px;
+      text-decoration: none;
+    }
+
+    &_second {
+      a {
+        box-sizing: border-box;
+        height: 40px;
+        padding: 11px 0 0 45px;
+      }
+    }
+    &_support {
+      a {
+        height: 50px;
+        position: absolute;
+        width: 208px;
+        text-align: center;
+        box-sizing: border-box;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        display: inline-flex;
+        border: solid 1px #446f9c;
+        background-color: #154a82;
+        padding: 12px 0px 0px 24px;
+        margin-left: 20px;
+        bottom: 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover,
+        &.active {
+          background: $side-bar-active-bg-color;
+          border-radius: 10px;
+          a {
+            color: $side-bar-active-text-color;
+          }
+        }
+      }
+      mat-icon {
+        padding-right: 10px;
+      }
+    }
+
+    &.disabled-nav {
+      background: none;
+
+      a {
+        @extend .color-labels-and-icons;
+        color: $side-bar-active-bg-color;
+        cursor: none;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__icon {
+    margin: 8px 9px 7px 0;
+    vertical-align: -6px;
+
+    &_mat {
+      font-size: 25px;
+    }
+
+    &_svg {
+      display: inline-block;
+      height: 25px;
+      width: 25px;
+
+      ::ng-deep svg {
+        fill: currentColor;
+      }
+    }
+  }
+  &:last-child {
+    margin-bottom: 30%;
+  }
+}

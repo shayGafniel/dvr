@@ -1,0 +1,50 @@
+.dialog-header {
+  text-align: center;
+  h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  background-color: #2faae1;
+  color: #ffffff;
+}
+
+.user-comment-dialog-content {
+  width: 480px;
+}
+
+textarea {
+  resize: none;
+  width: 480px;
+  height: 100px;
+}
+
+.after-send-text-message {
+  display: flex;
+  justify-content: space-between;
+  span {
+    margin: 3px 3px 0 0;
+  }
+  div {
+    margin-bottom: 2px;
+  }
+}
+
+mat-dialog-actions {
+  button {
+    background-color: lightgrey;
+    margin: auto;
+    line-height: 20px;
+  }
+}
+
+.button-content-container {
+  display: flex;
+  mat-progress-spinner {
+    margin-left: 3px;
+    margin-top: 2px;
+  }
+}
+
+.error-icon {
+  color: red;
+}

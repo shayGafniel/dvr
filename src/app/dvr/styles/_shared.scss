@@ -1,0 +1,95 @@
+@import "../../../styles/helpers";
+@import "../../../styles/variables";
+
+.dvr,
+.approve,
+.summary {
+  margin-bottom: $layout-space;
+
+  &__filter {
+    padding-bottom: 17px;
+  }
+  &__date-range {
+    width: 27%;
+  }
+
+  &__sticky {
+    position: sticky;
+    top: 10px;
+  }
+
+  &__title {
+    margin-bottom: 11px;
+  }
+
+  &__action-button {
+    margin-top: 21px;
+  }
+}
+
+.refunds-list,
+.refunds-approve-list {
+  background-color: #fff;
+  overflow: hidden;
+
+  &__node {
+    padding-left: 33px;
+
+    &[aria-level="1"] {
+      padding-left: 65px !important;
+    }
+
+    &_is-expandable {
+      padding-left: 7px;
+    }
+  }
+
+  .mat-tree-node[role="group"] &__amount,
+  .mat-tree-node[aria-level="0"] &__amount {
+    letter-spacing: 0.05em;
+  }
+
+  &__extend-button.mat-icon-button[mat-icon-button] {
+    font-size: 12.2px;
+    height: 20px;
+  }
+  &__extend-icon {
+    &_is-extended {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__item,
+  &__node {
+    border-bottom: 1px solid $table-border-color;
+    min-height: 37px;
+  }
+
+  &__header {
+    border-bottom: 1px solid $table-border-color;
+    font-weight: bold;
+    height: 37px;
+    padding: 0 75px 0 68px;
+  }
+
+  &__comment,
+  &__pictures {
+    padding-bottom: 4px;
+  }
+  &__comment {
+    padding-left: 2px;
+  }
+
+  &__icon-btn,
+  ::ng-deep &__icon-btn button {
+    font-size: 15px;
+  }
+
+  ::ng-deep &__comment-popup .has-comment.mat-icon-button[mat-icon-button] {
+    @extend .color-blue;
+  }
+}
+
+:host ::ng-deep .mat-badge-content {
+  margin: 5px 1px 0 0;
+}

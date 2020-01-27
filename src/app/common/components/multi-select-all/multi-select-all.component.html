@@ -1,0 +1,15 @@
+<mat-form-field>
+  <mat-select
+    [multiple]="true"
+    [ngrxFormControlState]="ngrxFormControlStateArray"
+    [placeholder]="placeholder"
+  >
+    <mat-option
+      *ngFor="let option of options"
+      [disabled]="isDisabledOtherOptions && option.value !== allOptionValue && hasAllOption()"
+      [value]="option.value"
+    >
+      <img *ngIf="option.icon" [src]="option.icon" class="multi-select-icon"> {{ option.display }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

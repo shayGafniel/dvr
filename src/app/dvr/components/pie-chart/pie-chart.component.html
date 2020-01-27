@@ -1,0 +1,6 @@
+<svg class="pie-chart" viewBox="-1 -1 2 2">
+  <path *ngFor="let pathData of getPathData()"
+        [attr.d]="pathData.d"
+        [attr.fill]="pathData.color"></path>
+  <circle cx="0" cy="0" [attr.r]="donutHoleThickness" [style.fill]="donutHoleColor"></circle>
+</svg>

@@ -1,0 +1,17 @@
+<mat-menu #commentMenu="matMenu" class="menu-with-textarea">
+  <textarea
+    (click)="onControlClick($event)"
+    matInput
+    placeholder="Leave a comment"
+  >{{ comment }}</textarea>
+</mat-menu>
+
+<button
+  [class.has-comment]="comment?.length"
+  [matMenuTriggerFor]="commentMenu"
+  class="relative-button"
+  mat-icon-button
+  id="comment btn"
+>
+  <mat-icon aria-label="Add comment to the reject reason">comment</mat-icon>
+</button>

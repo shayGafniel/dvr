@@ -1,0 +1,68 @@
+<div
+  [fxLayoutAlign]="potentialForEntity ? 'space-around' : 'start'"
+  class="potential"
+  fxLayout="column"
+>
+  <div *ngIf="potentialForAccount" class="potential__linear-chart shadowed-block linear-chart">
+    <h3 class="potential-title">{{ accountName }}</h3>
+    <h2 class="linear-chart__currency currency">
+      {{ totalAccountValue | currency:currencySymbolForAccount:'symbol':'1.0-0' }}
+    </h2>
+    <div class="linear-chart__chart-container">
+      <div class="potential-label">Details</div>
+      <app-linear-chart [slices]="slicesForAccount" class="linear-chart__chart"></app-linear-chart>
+    </div>
+    <div
+      *ngFor="let potentialDisplay of sortedAccountPotentialDisplays"
+      [style.display]="potentialDisplay.value ? '' : 'none'"
+      class="linear-chart__value-container"
+    >
+      <div class="linear-chart__value" fxLayout="row">
+        <div [style.color]="potentialDisplay.color" class="linear-chart__circle" fxFlex="34px">
+          <div class="legend-circle"></div>
+        </div>
+        <div class="currency" fxFlex="80px">
+          {{ currencySymbolForAccount }}{{ potentialDisplay.value | abbreviateNumber:2 }}
+        </div>
+        <div class="linear-chart__value-label" fxFlex>{{ potentialDisplay.type }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="potentialForEntity && totalEntityValue"
+    class="potential__pie-chart shadowed-block pie-chart"
+    fxLayout="column"
+  >
+    <h3 class="potential-title">{{ entityName }}</h3>
+    <div class="pie-chart__container" fxFlex fxLayout="row" fxLayoutAlign="center center">
+      <app-pie-chart [slices]="slicesForEntity" class="pie-chart__chart"></app-pie-chart>
+      <div class="pie-chart__labels">
+        <div
+          *ngFor="let potentialDisplay of sortedEntityPotentialDisplays"
+          [style.color]="potentialDisplay.color"
+          [style.display]="potentialDisplay.value ? '' : 'none'"
+          class="pie-chart__label"
+        >
+          <span>{{ potentialDisplay.type }}</span>
+          <br>
+          <span class="currency">
+            {{ potentialDisplay.value | currency:currencySymbolForEntity:'symbol':'1.0-0' }}
+          </span>
+        </div>
+      </div>
+      <div class="pie-chart__total currency">
+        <div class="potential-label">Total</div>
+        <h2>{{ totalEntityValue | currency:currencySymbolForEntity:'symbol':'1.0-0' }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="entityName && !potentialForEntity" class="entity-loader">
+    <mat-spinner color="primary" mode="indeterminate"></mat-spinner>
+  </div>
+
+  <h3
+    *ngIf="potentialForEntity && !totalEntityValue"
+  >No statistics for the entity</h3>
+</div>

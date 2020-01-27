@@ -1,0 +1,13 @@
+.main-container {
+  height: 100%;
+  display: flex;
+
+  .placeholder {
+    flex: 1;
+  }
+
+  .data-container {
+    width: 100%;
+    max-width: 1920px;
+  }
+}

@@ -1,0 +1,272 @@
+<div class="styles">
+  <div class="styles__header mat-title">
+    <img src="../../../../app/common/images/vatbox-logo-dark.svg" alt="VATBox" class="styles__header-logo"> - Style
+    Guide
+  </div>
+
+  <h3>Typography</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group styles__typography" fxLayout="row">
+    <div fxFlex="70">
+      <h1>Big No. (h1, .mat-headline, .mat-h1)</h1>
+      <h2>Page Title (h2, .mat-title, .mat-h2)</h2>
+      <h3>Box Title (h3, .mat-subheading-2, .mat-h3)</h3>
+      <h4>(h4, .mat-subheading-1, .mat-h4)</h4>
+    </div>
+    <div fxFlex="30">
+      <p>Example with <code>&lt;p&gt;</code> tags.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus asperiores autem commodi eum eveniet
+        explicabo, hic incidunt ipsam ipsum maiores molestias mollitia nam, quaerat quas quia rem, suscipit tempore.
+        Dolorum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </div>
+  </div>
+
+  <h3>Badge</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group styles__components" fxLayout="row wrap" fxLayoutGap="50px">
+    <button mat-icon-button matBadge="42" matBadgeSize="small">
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+    <button mat-icon-button matBadge="42" matBadgeSize="medium">
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+    <button mat-icon-button matBadge="2" matBadgeSize="large">
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+    <button mat-icon-button matBadge="42" matBadgeColor="warn" matBadgeSize="medium">
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+  </div>
+
+  <h3>Buttons</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group styles__components" fxLayout="row wrap" fxLayoutGap="50px">
+    <button color="primary" mat-raised-button>Primary Button</button>
+    <button color="primary" mat-raised-button disabled>Primary Button</button>
+    <button color="primary" mat-stroked-button>Secondary Button</button>
+    <button color="primary" mat-stroked-button disabled>Secondary Button</button>
+    <button color="primary" mat-button>Link Button</button>
+  </div>
+
+  <h3>Checkbox</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group styles__components" fxLayout="row wrap" fxLayoutGap="50px">
+    <mat-checkbox>Unchecked</mat-checkbox>
+    <mat-checkbox [checked]="true" #indeterminate>Checked</mat-checkbox>
+    <mat-checkbox [indeterminate]="indeterminate.checked">Indeterminate</mat-checkbox>
+    <mat-checkbox disabled>Disabled</mat-checkbox>
+    <mat-checkbox [disabled]="true" [checked]="true">Disabled</mat-checkbox>
+  </div>
+
+  <h3>Icon Button</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group styles__components" fxLayout="row wrap" fxLayoutGap="50px">
+    <button mat-icon-button color="primary">
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+    <button mat-icon-button color="accent">
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+    <button mat-icon-button disabled>
+      <mat-icon>signal_cellular_alt</mat-icon>
+    </button>
+  </div>
+
+  <h3>Icons</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group styles__components" fxLayout="row wrap" fxLayoutGap="20px">
+    <mat-icon svgIcon="app:alert"></mat-icon>
+    <mat-icon svgIcon="app:analysis"></mat-icon>
+    <mat-icon svgIcon="app:ap_audit"></mat-icon>
+    <mat-icon svgIcon="app:arrow_down"></mat-icon>
+    <mat-icon svgIcon="app:arrow_left"></mat-icon>
+    <mat-icon svgIcon="app:arrow_left_end"></mat-icon>
+    <mat-icon svgIcon="app:arrow_right"></mat-icon>
+    <mat-icon svgIcon="app:arrow_right_end"></mat-icon>
+    <mat-icon svgIcon="app:arrow_sort_down"></mat-icon>
+    <mat-icon svgIcon="app:arrow_sort_up"></mat-icon>
+    <mat-icon svgIcon="app:bell"></mat-icon>
+    <mat-icon svgIcon="app:calendar"></mat-icon>
+    <mat-icon svgIcon="app:clear_filter"></mat-icon>
+    <mat-icon svgIcon="app:close"></mat-icon>
+    <mat-icon svgIcon="app:download_file"></mat-icon>
+    <mat-icon svgIcon="app:edit"></mat-icon>
+    <mat-icon svgIcon="app:error"></mat-icon>
+    <mat-icon svgIcon="app:evidance"></mat-icon>
+    <mat-icon svgIcon="app:graph"></mat-icon>
+    <mat-icon svgIcon="app:info"></mat-icon>
+    <mat-icon svgIcon="app:location"></mat-icon>
+    <mat-icon svgIcon="app:nmi"></mat-icon>
+    <mat-icon svgIcon="app:note"></mat-icon>
+    <mat-icon svgIcon="app:options"></mat-icon>
+    <mat-icon svgIcon="app:pdf"></mat-icon>
+    <mat-icon svgIcon="app:page"></mat-icon>
+    <mat-icon svgIcon="app:pending_approval"></mat-icon>
+    <mat-icon svgIcon="app:pending_submission"></mat-icon>
+    <mat-icon svgIcon="app:pictures"></mat-icon>
+    <mat-icon svgIcon="app:play"></mat-icon>
+    <mat-icon svgIcon="app:promo_connectivity"></mat-icon>
+    <mat-icon svgIcon="app:promo_e_invoice"></mat-icon>
+    <mat-icon svgIcon="app:promo_tailor"></mat-icon>
+    <mat-icon svgIcon="app:recovery"></mat-icon>
+    <mat-icon svgIcon="app:refresh"></mat-icon>
+    <mat-icon svgIcon="app:refund"></mat-icon>
+    <mat-icon svgIcon="app:scope"></mat-icon>
+    <mat-icon svgIcon="app:search"></mat-icon>
+    <mat-icon svgIcon="app:submit"></mat-icon>
+    <mat-icon svgIcon="app:support"></mat-icon>
+    <mat-icon svgIcon="app:tax_tailor"></mat-icon>
+    <mat-icon svgIcon="app:trend_down"></mat-icon>
+    <mat-icon svgIcon="app:trend_nutral"></mat-icon>
+    <mat-icon svgIcon="app:trend_up"></mat-icon>
+    <mat-icon svgIcon="app:user"></mat-icon>
+    <mat-icon svgIcon="app:star"></mat-icon>
+    <mat-icon svgIcon="app:start_border"></mat-icon>
+    <mat-icon svgIcon="app:tick"></mat-icon>
+    <mat-icon svgIcon="app:external_link"></mat-icon>
+    <mat-icon svgIcon="app:upload_file"></mat-icon>
+    <div fxFlex="100"></div>
+    <mat-icon>signal_cellular_alt</mat-icon>
+    <mat-icon color="primary">cached</mat-icon>
+    <mat-icon color="accent">assignment</mat-icon>
+    <mat-icon color="warn">cancel</mat-icon>
+    <mat-icon class="color-alert">comment</mat-icon>
+    <mat-icon class="color-ok">replay</mat-icon>
+    <mat-icon class="color-labels-and-icons">sync_problem</mat-icon>
+    <mat-icon class="color-title">block</mat-icon>
+    <mat-icon class="color-active">backspace</mat-icon>
+    <mat-icon style="font-size: 28px;">attach_file</mat-icon>
+    <mat-icon style="font-size: 42px;">vertical_align_top</mat-icon>
+  </div>
+
+  <h3>Radio button</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group styles__components" fxLayout="row wrap" fxLayoutGap="50px">
+    <mat-radio-group fxLayout="row" fxLayoutAlign="space-between" style="width: 540px">
+      <mat-radio-button value="1">Unselected</mat-radio-button>
+      <mat-radio-button value="2" checked>Selected</mat-radio-button>
+      <mat-radio-button value="2" disabled>Selected disabled</mat-radio-button>
+      <mat-radio-button value="3" disabled>Unselected disabled</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <h3>Input</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group" fxLayout="row wrap" fxLayoutGap="50px">
+    <mat-form-field><input matInput placeholder="Regular Input"></mat-form-field>
+    <mat-form-field><input matInput placeholder="Number Input" type="number"></mat-form-field>
+    <mat-form-field><input matInput placeholder="Disabled Input" value="Disabled" disabled></mat-form-field>
+    <mat-form-field><input matInput placeholder="Readonly Input" value="Readonly" readonly></mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Input With Icon Prefix" value="Input With Icon">
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Input With Icon Suffix" value="Input With Icon">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Textarea"></textarea>
+    </mat-form-field>
+
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Email validation" [formControl]="emailFormControl">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <h3>Date Picker</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group" fxLayout="row wrap" fxLayoutGap="50px">
+    <mat-form-field class="date-picker">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="date-picker">
+      <input matInput [disabled]="true" [matDatepicker]="pickerDisabled" placeholder="Disabled datepicker">
+      <mat-datepicker-toggle matSuffix [for]="pickerDisabled"></mat-datepicker-toggle>
+      <mat-datepicker #pickerDisabled></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <h3>Button Toggle</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group">
+    <mat-label class="button-toggle-label">Button toggle</mat-label>
+    <mat-button-toggle-group appearance="legacy">
+      <mat-button-toggle value="option1">Option1</mat-button-toggle>
+      <mat-button-toggle value="option2">Option2</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+
+  <h3>Card</h3>
+  <mat-divider></mat-divider>
+  <div class="styles__group">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          VAT Potential Refund post MATCHER®
+          <mat-icon svgIcon="app:analysis"></mat-icon>
+        </mat-card-title>
+        <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <h1>$ 850,000
+            <mat-icon [color]="'#ffac1c'" svgIcon="app:trend_nutral"></mat-icon>
+          </h1>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+      <mat-divider></mat-divider>
+
+      <mat-card-header>
+        <mat-card-title>
+          Y/Y  VAT Recovery Potential
+        </mat-card-title>
+        <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <div class="flex-item">
+            <div style="display: block;">
+              <canvas baseChart
+                      [datasets]="lineChartData"
+                      [labels]="lineChartLabels"
+                      [options]="lineChartOptions"
+                      [colors]="lineChartColors"
+                      [legend]="lineChartLegend"
+                      [chartType]="lineChartType"></canvas>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>
+
+

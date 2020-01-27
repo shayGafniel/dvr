@@ -1,0 +1,124 @@
+<div class="refunds-list shadowed-block">
+  <div *ngIf="dataSource.data?.length" class="refunds-list__header" fxLayout="row">
+    <div fxFlex fxLayoutAlign="start center">Reason</div>
+    <div fxFlex="90px" fxLayout="row" fxLayoutAlign="flex-end center"># of Invoices</div>
+    <div fxFlex="75px" fxLayout="row" fxLayoutAlign="flex-end center">Amount</div>
+  </div>
+
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+    <!-- Descendant node without children -->
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      [class.refunds-list__node_is-expandable]="treeControl.isExpandable(node)"
+      class="refunds-list__node"
+      fxLayout="row"
+      fxLayoutAlign="space-between"
+      matTreeNodeToggle
+      matTreeNodePadding
+    >
+      <div
+        fxFlex="calc(100% - 90px - 75px - 40px - 35px)"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <mat-checkbox
+          (change)="toggleDescendant(node)"
+          [checked]="selection.isSelected(node)"
+          [disabled]="asFlatNode(node).refund.disable"
+          class="refunds-list__checkbox"
+        >
+          <span>{{ asFlatNode(node).item }}</span>
+        </mat-checkbox>
+      </div>
+      <div fxFlex="90px" fxLayout="row" fxLayoutAlign="flex-end center">
+        <div *ngIf="asFlatNode(node).refund.details.count">
+          {{ asFlatNode(node).refund.details.count | number }}
+        </div>
+      </div>
+      <div fxFlex="75px" fxLayout="row" fxLayoutAlign="flex-end center">
+        {{ asFlatNode(node).refund.details.amount | currency:currencySymbol:'symbol':'1.0-0' }}
+      </div>
+      <div class="refunds-list__comment" fxFlex="40px" fxLayout="row" fxLayoutAlign="center center">
+        <app-comment-popup
+          *ngIf="selection.isSelected(node)"
+          [accountId]="accountId"
+          [entityId]="entityId"
+          [formState]="commentFormState"
+          [refundId]="asFlatNode(node).refund.id"
+          class="refunds-list__icon-btn refunds-list__comment-popup"
+          maxlength="300"
+          title="Add comment"
+        ></app-comment-popup>
+      </div>
+      <div class="refunds-list__pictures" fxFlex="35px" fxLayout="row" fxLayoutAlign="start center">
+        <button
+          *ngIf="!isPendingForImaginaryIds(asFlatNode(node)); else loadingImaginaryIds"
+          (click)="onImagesOpen(asFlatNode(node))"
+          [disabled]="isNoImages(asFlatNode(node))"
+          class="refunds-list__icon-btn relative-button"
+          mat-icon-button
+        >
+          <mat-icon svgIcon="app:pictures"></mat-icon>
+        </button>
+        <ng-template #loadingImaginaryIds>
+          <mat-spinner diameter="25"></mat-spinner>
+        </ng-template>
+      </div>
+    </mat-tree-node>
+
+    <!-- Parent node with children -->
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
+      [class.refunds-list__node_is-expandable]="treeControl.isExpandable(node)"
+      class="refunds-list__node"
+    >
+      <button
+        aria-label="toggle"
+        class="refunds-list__extend-button"
+        fxFlex="26px"
+        mat-icon-button
+        matTreeNodeToggle
+      >
+        <mat-icon
+          [class.refunds-list__extend-icon_is-extended]="treeControl.isExpanded(node)"
+          class="refunds-list__extend-icon"
+          svgIcon="app:arrow_down"
+        ></mat-icon>
+      </button>
+      <div
+        fxFlex="calc(100% - 33px - 90px - 75px - 40px - 35px)"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <mat-checkbox
+          (change)="toggleParent(node)"
+          [checked]="selection.isSelected(node)"
+          [disabled]="asFlatNode(node).refund.disable"
+          [indeterminate]="descendantsPartiallySelected(node)"
+          class="refunds-list__checkbox"
+        >
+          <span>{{ asFlatNode(node).item }}</span>
+        </mat-checkbox>
+      </div>
+      <div fxFlex="90px"></div>
+      <div fxFlex="75px" fxLayout="row" fxLayoutAlign="flex-end center">
+        {{ getDescendantsAmount(node) | currency:currencySymbol:'symbol':'1.0-0' }}
+      </div>
+      <div class="refunds-list__comment" fxFlex="40px" fxLayout="row" fxLayoutAlign="center center">
+        <app-comment-popup
+          *ngIf="selection.isSelected(node) || descendantsPartiallySelected(node)"
+          [accountId]="accountId"
+          [badge]="getSelectedAndCommentedDescendantsCount(node)"
+          [entityId]="entityId"
+          [formState]="commentFormState"
+          [refundId]="asFlatNode(node).refund.id"
+          class="refunds-list__icon-btn refunds-list__comment-popup"
+          maxlength="300"
+          title="Add comment"
+        ></app-comment-popup>
+      </div>
+      <div fxFlex="35px"></div>
+    </mat-tree-node>
+  </mat-tree>
+</div>

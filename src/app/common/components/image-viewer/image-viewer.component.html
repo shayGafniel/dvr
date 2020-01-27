@@ -1,0 +1,35 @@
+<div class="viewer">
+  <div class="viewer__controls white-theme">
+    <button
+      (click)="rotateLeft()"
+      class="responsive-icon-button"
+      mat-icon-button
+      title="Rotate Left"
+    >
+      <mat-icon>rotate_left</mat-icon>
+    </button>
+    <button
+      (click)="rotateRight()"
+      class="responsive-icon-button"
+      mat-icon-button
+      title="Rotate Right"
+    >
+      <mat-icon>rotate_right</mat-icon>
+    </button>
+    <button (click)="zoomOut()" class="responsive-icon-button" mat-icon-button title="Zoom Out">
+      <mat-icon>zoom_out</mat-icon>
+    </button>
+    <button (click)="zoomIn()" class="responsive-icon-button" mat-icon-button title="Zoom In">
+      <mat-icon>zoom_in</mat-icon>
+    </button>
+    <button (click)="reset()" class="responsive-icon-button" mat-icon-button title="Reset">
+      <mat-icon>settings_backup_restore</mat-icon>
+    </button>
+    <button (click)="download()" class="responsive-icon-button" mat-icon-button title="Download">
+      <mat-icon>cloud_download</mat-icon>
+    </button>
+  </div>
+  <div #draggable [commonDraggable2]="isDraggable" commonTransformer class="img-drag">
+    <img [src]="image" alt="" commonImageFallback draggable="false" />
+  </div>
+</div>

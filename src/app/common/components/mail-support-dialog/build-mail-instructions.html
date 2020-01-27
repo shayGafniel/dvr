@@ -1,0 +1,12 @@
+<h4>Back Office Support</h4>
+<h4>1. Copy all marked text below.</h4>
+<h4>2. Press 'OPEN MAIL APP'.</h4>
+<h4>3. Paste the text on opened e-mail body.</h4>
+<textarea commonAutoSelect cols="35" rows="10" [(ngModel)]="logs"></textarea>
+<mat-dialog-actions>
+  <button mat-button (click)="dialog.close()"
+          color="primary" type="button">
+    <!-- send redirects window to mail -->
+    <span>open mail app</span>
+  </button>
+</mat-dialog-actions>

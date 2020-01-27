@@ -1,0 +1,30 @@
+@import "../helpers";
+
+mat-select.mat-select {
+  @extend .field-border;
+  @extend .field-inner-style;
+
+  .mat-select-trigger {
+    @extend .component-font;
+    line-height: 1.57;
+    margin-top: 3px;
+  }
+  .mat-select-arrow {
+    @extend .color-labels-and-icons;
+    border: solid;
+    border-width: 0 1.5px 1.5px 0;
+    display: inline-block;
+    margin-bottom: 3.5px;
+    padding: 3px;
+    transform: rotate(45deg);
+  }
+  &.mat-select-disabled {
+    .mat-select-arrow {
+      opacity: 0.39;
+    }
+  }
+}
+
+mat-option.mat-option {
+  height: 30px;
+}

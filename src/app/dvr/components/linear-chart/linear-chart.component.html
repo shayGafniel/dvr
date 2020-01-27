@@ -1,0 +1,9 @@
+<div class="linear-chart" fxLayout="row">
+  <div
+    *ngFor="let slice of slices"
+    [fxFlex]="slice.percent"
+    [style.background]="slice.color"
+    [style.display]="slice.percent > 0 ? 'block' : 'none'"
+    class="linear-chart__slice"
+  ></div>
+</div>

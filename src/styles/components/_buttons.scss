@@ -1,0 +1,100 @@
+@import "../../app/common/styles/styles";
+@import "../helpers";
+
+.mat-button[mat-button],
+.mat-raised-button[mat-raised-button],
+.mat-stroked-button[mat-stroked-button] {
+  font-weight: bold;
+  line-height: emFrom(30);
+  padding: 0 emFrom(16);
+}
+
+.mat-raised-button[mat-raised-button],
+.mat-stroked-button[mat-stroked-button] {
+  &,
+  &:active,
+  &[disabled],
+  &:active:not([disabled]) {
+    box-shadow: 0 emFrom(2) emFrom(3) 0 rgba(37, 78, 210, 0.28);
+  }
+}
+
+.mat-raised-button[mat-raised-button] {
+  &:not([disabled]) {
+    &:hover {
+      @extend .bg-over;
+
+      &.mat-warn {
+        background: darken(mat-color($warn), 7%);
+      }
+    }
+    &:active,
+    &:hover:active {
+      @extend .bg-active;
+    }
+  }
+
+  &[disabled] {
+    @extend .bg-disabled;
+    @extend .color-light-text;
+  }
+}
+
+.mat-button[mat-button],
+.mat-stroked-button[mat-stroked-button] {
+  &:not([disabled]) {
+    &:hover {
+      @extend .color-over;
+    }
+    &:active,
+    &:hover:active {
+      @extend .color-active;
+    }
+  }
+}
+.mat-stroked-button[mat-stroked-button] {
+  background-color: #fff;
+
+  &:not([disabled]) {
+    border: 1px solid currentColor;
+  }
+}
+.mat-button-focus-overlay {
+  display: none;
+}
+
+.mat-icon-button[mat-icon-button] {
+  @extend button, .relative-button;
+  @extend .color-labels-and-icons;
+  border-radius: emFrom(5);
+  height: emFrom(24);
+  line-height: emFrom(24);
+  width: emFrom(24);
+
+  &.mat-primary {
+    @extend .color-primary;
+  }
+  &.mat-accent {
+    @extend .color-accent;
+  }
+
+  &:not([disabled]) {
+    &:hover,
+    &:active {
+      @extend .bg-icon;
+    }
+    &:active {
+      @extend .color-active;
+    }
+  }
+
+  &[disabled] {
+    @extend .color-disabled;
+  }
+}
+
+.dark-theme {
+  .mat-icon-button[mat-icon-button]:not([disabled]) {
+    @extend .color-light-text;
+  }
+}
