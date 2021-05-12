@@ -32,7 +32,7 @@
     "@ngrx/store": "^8.6.0",
     "@ngu/carousel": "^1.5.5",
     "@types/tableau": "^2.2.3",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "error-stack-parser": "^2.0.6",
     "jasmine-marbles": "^0.6.0",
     "lodash-es": "^4.17.15",
