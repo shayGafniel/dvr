@@ -35,7 +35,7 @@
     "chart.js": "^2.9.3",
     "error-stack-parser": "^2.0.6",
     "jasmine-marbles": "^0.6.0",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "moment": "^2.24.0",
     "ng-inline-svg": "^8.6.3",
     "ng2-charts": "^2.3.0",
